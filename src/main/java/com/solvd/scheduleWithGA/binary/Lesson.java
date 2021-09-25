@@ -1,31 +1,52 @@
 package com.solvd.scheduleWithGA.binary;
 
+import java.util.Objects;
+
 public class Lesson {
-    private int id;
-    private String name;
-    private int speciality;
-    private int hoursPerWeek;
+    private int idLesson;
+    private String lessonName;
+    private int specialityId;
 
-    public Lesson(int id, String name, Speciality speciality, int hoursPerWeek) {
-        this.id = id;
-        this.name = name;
-        this.speciality = speciality.getId();
-        this.hoursPerWeek = hoursPerWeek;
+    public Lesson(int idLesson, String lessonName, int specialityId) {
+        this.idLesson = idLesson;
+        this.lessonName = lessonName;
+        this.specialityId = specialityId;
     }
 
-    public int getId() {
-        return id;
+    public int getIdLesson() {
+        return idLesson;
     }
 
-    public String getName() {
-        return name;
+    public void setIdLesson(int idLesson) {
+        this.idLesson = idLesson;
     }
 
-    public int getSpeciality() {
-        return speciality;
+    public String getLessonName() {
+        return lessonName;
     }
 
-    public int getHoursPerWeek() {
-        return hoursPerWeek;
+    public void setLessonName(String lessonName) {
+        this.lessonName = lessonName;
+    }
+
+    public int getSpecialityId() {
+        return specialityId;
+    }
+
+    public void setSpecialityId(int specialityId) {
+        this.specialityId = specialityId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Lesson)) return false;
+        Lesson lesson = (Lesson) o;
+        return idLesson == lesson.idLesson && specialityId == lesson.specialityId && lessonName.equals(lesson.lessonName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idLesson, lessonName, specialityId);
     }
 }

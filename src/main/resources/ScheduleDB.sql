@@ -1,11 +1,17 @@
 CREATE DATABASE ScheduleDB;
 USE ScheduleDB;
 
+CREATE TABLE Speciality(
+	idSpeciality int not null auto_increment primary key,
+    specialityName varchar(45) not null
+);
+
 CREATE TABLE Teacher(
 idTeacher int not null auto_increment,
 fullName varchar(60) not null,
-speciality varchar(45) not null,
-PRIMARY KEY(idTeacher)
+specialityId int not null,
+PRIMARY KEY(idTeacher),
+foreign key (specialityId) references Speciality(idSpeciality)
 );
 
 SELECT * FROM Teacher;
@@ -50,7 +56,9 @@ SELECT * FROM TimeSlot;
 CREATE TABLE Lesson(
 idLesson int not null auto_increment,
 lessonName varchar(45) not null,
-PRIMARY KEY(idLesson)
+specialityId int not null,
+PRIMARY KEY(idLesson),
+foreign key (specialityId) references Speciality(specialityId)
 );
 
 SELECT * FROM Lesson;

@@ -2,9 +2,11 @@ CREATE DATABASE ScheduleDB;
 USE ScheduleDB;
 
 CREATE TABLE Speciality(
+
 idSpeciality int not null auto_increment,
 specialityName varchar(45) not null,
 PRIMARY KEY(idSpeciality)
+
 );
 
 CREATE TABLE Teacher(
@@ -59,7 +61,9 @@ idLesson int not null auto_increment,
 lessonName varchar(45) not null,
 specialityId int not null,
 PRIMARY KEY(idLesson),
+
 foreign key (specialityId) references Speciality(idSpeciality)
+
 );
 
 SELECT * FROM Lesson;

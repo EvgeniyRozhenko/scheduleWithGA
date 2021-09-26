@@ -7,6 +7,7 @@ public class Teacher {
     private String fullName;
     private int specialityId;
 
+
     public Teacher(int idTeacher, String fullName, int specialityId) {
         this.idTeacher = idTeacher;
         this.fullName = fullName;
@@ -21,6 +22,10 @@ public class Teacher {
         this.idTeacher = idTeacher;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getFullName() {
         return fullName;
     }
@@ -28,6 +33,7 @@ public class Teacher {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
+
 
     public int getSpecialityId() {
         return specialityId;
@@ -48,5 +54,19 @@ public class Teacher {
     @Override
     public int hashCode() {
         return Objects.hash(idTeacher, fullName, specialityId);
+
+    }
+
+    public void setSpeciality(int speciality) {
+        this.speciality = speciality;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "id=" + id +
+                ", fullName='" + fullName + '\'' +
+                ", speciality=" + speciality +
+                '}';
     }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
+<mapper namespace = "com.solvd.scheduleWithGA.dao.interfaces.ITeacherDAO">
+    <select id="getById" parameterType ="int" resultMap="teacherResultMap">
+        SELECT  t.idTeacher as teacher_id,
+                t.fullName as teacher_fullName,
+                t.specialityId as teacher_specialityId
+        FROM Teacher t
+        WHERE t.idTeacher = #{id}
+    </select>
+    <resultMap id="teacherResultMap" type="com.solvd.scheduleWithGA.binary.Teacher" autoMapping ="false">
+        <id column="teacher_id" property="id"/>
+        <result column="teacher_fullName" property="fullName"/>
+        <result column="teacher_specialityId" property="speciality"/>
+    </resultMap>
+</mapper>

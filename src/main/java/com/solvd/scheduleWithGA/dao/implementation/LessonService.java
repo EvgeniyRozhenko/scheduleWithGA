@@ -8,15 +8,24 @@ import com.solvd.scheduleWithGA.utils.MyBatisFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import java.util.HashMap;
+
 public class LessonService {
     private final static SqlSessionFactory factory = MyBatisFactory.getSessionFactory();
 
-    public Lesson getLessonById(int id){
+    public HashMap<Integer, Lesson> getLessonHashMap(){
+        HashMap<Integer, Lesson> result = new HashMap<>();
         Lesson lesson;
+        int id = 1;
         try(SqlSession session = factory.openSession()){
             ILessonDAO lessonDAO = session.getMapper(ILessonDAO.class);
-            lesson = lessonDAO.getById(id);
+            while(true){
+                lesson = lessonDAO.getById(id);
+                id++;
+                if(lesson==null) break;
+                result.put(lesson.getIdLesson(), lesson);
+            }
         }
-        return lesson;
+        return result;
     }
 }

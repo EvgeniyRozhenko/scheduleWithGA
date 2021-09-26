@@ -6,15 +6,24 @@ import com.solvd.scheduleWithGA.utils.MyBatisFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import java.util.HashMap;
+
 public class ClassroomService {
     private final static SqlSessionFactory factory = MyBatisFactory.getSessionFactory();
 
-    public Classroom getClassroombyId(int id){
+    public HashMap<Integer, Classroom> getClassroomHashMap() {
+        HashMap<Integer, Classroom> result = new HashMap<>();
         Classroom classroom;
-        try(SqlSession session = factory.openSession()){
+        int id = 1;
+        try (SqlSession session = factory.openSession()) {
             IClassroomDAO classroomDAO = session.getMapper(IClassroomDAO.class);
-            classroom = classroomDAO.getById(id);
+            while (true) {
+                classroom = classroomDAO.getById(id);
+                id++;
+                if (classroom==null) break;
+                result.put(classroom.getIdRoom(), classroom);
+            }
         }
-        return classroom;
+        return result;
     }
 }

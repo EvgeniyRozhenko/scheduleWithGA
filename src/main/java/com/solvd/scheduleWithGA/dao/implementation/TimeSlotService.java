@@ -8,15 +8,24 @@ import com.solvd.scheduleWithGA.utils.MyBatisFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import java.util.HashMap;
+
 public class TimeSlotService {
     private final static SqlSessionFactory factory = MyBatisFactory.getSessionFactory();
 
-    public TimeSlot getTimeSlotById(int id){
+    public HashMap<Integer, TimeSlot> getTimeSlotHashMap(){
+        HashMap<Integer, TimeSlot> result = new HashMap<>();
         TimeSlot timeSlot;
+        int id =1;
         try(SqlSession session = factory.openSession()){
             ITimeSlotDAO classroomDAO = session.getMapper(ITimeSlotDAO.class);
-            timeSlot = classroomDAO.getById(id);
+            while (true){
+                timeSlot = classroomDAO.getById(id);
+                id++;
+                if(timeSlot==null) break;
+                result.put(timeSlot.getIdTimeSlot(), timeSlot);
+            }
         }
-        return timeSlot;
+        return result;
     }
 }

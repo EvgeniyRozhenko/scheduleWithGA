@@ -8,15 +8,24 @@ import com.solvd.scheduleWithGA.utils.MyBatisFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import java.util.HashMap;
+
 public class ClassGroupService {
     private final static SqlSessionFactory factory = MyBatisFactory.getSessionFactory();
 
-    public ClassGroup getClassGroupById(int id){
+    public HashMap<Integer, ClassGroup> getClassGroupHashMap(){
+        HashMap<Integer, ClassGroup> result = new HashMap<>();
         ClassGroup classGroup;
+        int id =1;
         try(SqlSession session = factory.openSession()){
             IClassGroupDAO classGroupDAO = session.getMapper(IClassGroupDAO.class);
-            classGroup = classGroupDAO.getById(id);
+            while (true){
+                classGroup = classGroupDAO.getById(id);
+                id++;
+                if (classGroup == null) break;
+                result.put(classGroup.getIdClassGroup(), classGroup);
+            }
         }
-        return classGroup;
+        return result;
     }
 }

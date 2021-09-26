@@ -12,12 +12,12 @@ public class Main {
         TeacherService teacherService = new TeacherService();
         LOGGER.info(teacherService.getTeachersHashMap());
         ClassroomService classroomService = new ClassroomService();
-        LOGGER.info(classroomService.getClassroombyId(1));
+        LOGGER.info(classroomService.getClassroomHashMap());
         TimeSlotService timeSlotService = new TimeSlotService();
-        LOGGER.info(timeSlotService.getTimeSlotById(1));
+        LOGGER.info(timeSlotService.getTimeSlotHashMap());
         LessonService lessonService = new LessonService();
-        LOGGER.info(lessonService.getLessonById(1));
+        LOGGER.info(lessonService.getLessonHashMap());
         ClassGroupService classGroupService = new ClassGroupService();
-        LOGGER.info(classGroupService.getClassGroupById(1));
+        LOGGER.info(classGroupService.getClassGroupHashMap());
     }
 }

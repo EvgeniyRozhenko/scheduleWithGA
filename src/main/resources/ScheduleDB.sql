@@ -1,7 +1,7 @@
 CREATE DATABASE ScheduleDB;
 USE ScheduleDB;
 
-create table Speciality (
+CREATE TABLE Speciality(
 idSpeciality int not null auto_increment,
 specialityName varchar(45) not null,
 PRIMARY KEY(idSpeciality)
@@ -68,7 +68,6 @@ CREATE TABLE ClassGroup(
 idClassGroup int not null auto_increment,
 groupName varchar(45) not null,
 groupSize int(2) not null,
-lessonsPerWeek int(2),
 PRIMARY KEY(idClassGroup)
 );
 

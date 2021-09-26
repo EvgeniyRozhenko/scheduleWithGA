@@ -6,11 +6,6 @@ public class WeekDay {
     private int idWeekDay;
     private String dayName;
 
-    public WeekDay(int idWeekDay, String dayName) {
-        this.idWeekDay = idWeekDay;
-        this.dayName = dayName;
-    }
-
     public int getIdWeekDay() {
         return idWeekDay;
     }
@@ -38,5 +33,13 @@ public class WeekDay {
     @Override
     public int hashCode() {
         return Objects.hash(idWeekDay, dayName);
+    }
+
+    @Override
+    public String toString() {
+        return "WeekDay{" +
+                "idWeekDay=" + idWeekDay +
+                ", dayName='" + dayName + '\'' +
+                '}';
     }
 }

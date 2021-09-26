@@ -7,12 +7,6 @@ public class TimeSlot {
     private int timePeriodId;
     private int weekDayId;
 
-    public TimeSlot(int idTimeSlot, int timePeriodId, int weekDayId) {
-        this.idTimeSlot = idTimeSlot;
-        this.timePeriodId = timePeriodId;
-        this.weekDayId = weekDayId;
-    }
-
     public int getIdTimeSlot() {
         return idTimeSlot;
     }
@@ -48,5 +42,14 @@ public class TimeSlot {
     @Override
     public int hashCode() {
         return Objects.hash(idTimeSlot, timePeriodId, weekDayId);
+    }
+
+    @Override
+    public String toString() {
+        return "TimeSlot{" +
+                "idTimeSlot=" + idTimeSlot +
+                ", timePeriodId=" + timePeriodId +
+                ", weekDayId=" + weekDayId +
+                '}';
     }
 }

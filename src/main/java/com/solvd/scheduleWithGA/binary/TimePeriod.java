@@ -7,12 +7,6 @@ public class TimePeriod {
     private String timeFrom;
     private String timeTo;
 
-    public TimePeriod(int idTimePeriod, String timeFrom, String timeTo) {
-        this.idTimePeriod = idTimePeriod;
-        this.timeFrom = timeFrom;
-        this.timeTo = timeTo;
-    }
-
     public int getIdTimePeriod() {
         return idTimePeriod;
     }
@@ -48,5 +42,14 @@ public class TimePeriod {
     @Override
     public int hashCode() {
         return Objects.hash(idTimePeriod, timeFrom, timeTo);
+    }
+
+    @Override
+    public String toString() {
+        return "TimePeriod{" +
+                "idTimePeriod=" + idTimePeriod +
+                ", timeFrom='" + timeFrom + '\'' +
+                ", timeTo='" + timeTo + '\'' +
+                '}';
     }
 }

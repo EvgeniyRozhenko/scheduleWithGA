@@ -8,13 +8,6 @@ public class LessonsInGroup {
     private int groupId;
     private int hoursPerWeek;
 
-    public LessonsInGroup(int idLessonInGroup, int lessonId, int groupId, int hoursPerWeek) {
-        this.idLessonInGroup = idLessonInGroup;
-        this.lessonId = lessonId;
-        this.groupId = groupId;
-        this.hoursPerWeek = hoursPerWeek;
-    }
-
     public int getIdLessonInGroup() {
         return idLessonInGroup;
     }
@@ -58,5 +51,15 @@ public class LessonsInGroup {
     @Override
     public int hashCode() {
         return Objects.hash(idLessonInGroup, lessonId, groupId, hoursPerWeek);
+    }
+
+    @Override
+    public String toString() {
+        return "LessonsInGroup{" +
+                "idLessonInGroup=" + idLessonInGroup +
+                ", lessonId=" + lessonId +
+                ", groupId=" + groupId +
+                ", hoursPerWeek=" + hoursPerWeek +
+                '}';
     }
 }

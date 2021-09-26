@@ -7,12 +7,6 @@ public class ClassGroup {
     private String groupName;
     private int groupSize;
 
-    public ClassGroup(int idClassGroup, String groupName, int groupSize) {
-        this.idClassGroup = idClassGroup;
-        this.groupName = groupName;
-        this.groupSize = groupSize;
-    }
-
     public int getIdClassGroup() {
         return idClassGroup;
     }
@@ -48,5 +42,14 @@ public class ClassGroup {
     @Override
     public int hashCode() {
         return Objects.hash(idClassGroup, groupName, groupSize);
+    }
+
+    @Override
+    public String toString() {
+        return "ClassGroup{" +
+                "idClassGroup=" + idClassGroup +
+                ", groupName='" + groupName + '\'' +
+                ", groupSize=" + groupSize +
+                '}';
     }
 }

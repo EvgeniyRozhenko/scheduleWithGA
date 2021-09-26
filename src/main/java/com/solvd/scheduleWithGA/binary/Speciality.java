@@ -6,11 +6,6 @@ public class Speciality {
     private int idSpeciality;
     private String specialityName;
 
-    public Speciality(int idSpeciality, String specialityName) {
-        this.idSpeciality = idSpeciality;
-        this.specialityName = specialityName;
-    }
-
     public int getIdSpeciality() {
         return idSpeciality;
     }
@@ -38,5 +33,13 @@ public class Speciality {
     @Override
     public int hashCode() {
         return Objects.hash(idSpeciality, specialityName);
+    }
+
+    @Override
+    public String toString() {
+        return "Speciality{" +
+                "idSpeciality=" + idSpeciality +
+                ", specialityName='" + specialityName + '\'' +
+                '}';
     }
 }

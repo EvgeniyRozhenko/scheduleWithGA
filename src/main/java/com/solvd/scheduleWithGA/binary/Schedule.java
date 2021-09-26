@@ -9,14 +9,6 @@ public class Schedule {
     private int lessonInGroupId;
     private int classroomId;
 
-    public Schedule(int idSchedule, int timeSlotId, int teacherId, int lessonInGroupId, int classroomId) {
-        this.idSchedule = idSchedule;
-        this.timeSlotId = timeSlotId;
-        this.teacherId = teacherId;
-        this.lessonInGroupId = lessonInGroupId;
-        this.classroomId = classroomId;
-    }
-
     public int getIdSchedule() {
         return idSchedule;
     }
@@ -68,5 +60,16 @@ public class Schedule {
     @Override
     public int hashCode() {
         return Objects.hash(idSchedule, timeSlotId, teacherId, lessonInGroupId, classroomId);
+    }
+
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "idSchedule=" + idSchedule +
+                ", timeSlotId=" + timeSlotId +
+                ", teacherId=" + teacherId +
+                ", lessonInGroupId=" + lessonInGroupId +
+                ", classroomId=" + classroomId +
+                '}';
     }
 }

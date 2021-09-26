@@ -7,12 +7,6 @@ public class Classroom {
     private int roomNumber;
     private int capacity;
 
-    public Classroom(int idRoom, int roomNumber, int capacity) {
-        this.idRoom = idRoom;
-        this.roomNumber = roomNumber;
-        this.capacity = capacity;
-    }
-
     public int getIdRoom() {
         return idRoom;
     }
@@ -48,5 +42,14 @@ public class Classroom {
     @Override
     public int hashCode() {
         return Objects.hash(idRoom, roomNumber, capacity);
+    }
+
+    @Override
+    public String toString() {
+        return "Classroom{" +
+                "idRoom=" + idRoom +
+                ", roomNumber=" + roomNumber +
+                ", capacity=" + capacity +
+                '}';
     }
 }

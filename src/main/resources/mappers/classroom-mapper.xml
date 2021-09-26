@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
+<mapper namespace = "com.solvd.scheduleWithGA.dao.interfaces.IClassroomDAO">
+    <select id="getById" parameterType ="int" resultMap="classroomResultMap">
+        SELECT  c.idRoom as classroom_id,
+                c.roomNumber as classroom_roomNumber,
+                c.capacity as classroom_capacity
+        FROM Classroom c
+        WHERE c.idRoom = #{id};
+    </select>
+    <resultMap id="classroomResultMap" type="com.solvd.scheduleWithGA.binary.Classroom" autoMapping="false">
+        <id column="classroom_id" property="idRoom"/>
+        <result column="classroom_roomNumber" property="roomNumber"/>
+        <result column="classroom_capacity" property="capacity"/>
+    </resultMap>
+</mapper>

@@ -52,4 +52,14 @@ public class LessonsInGroup {
     public int hashCode() {
         return Objects.hash(idLessonInGroup, lessonId, groupId, hoursPerWeek);
     }
+
+    @Override
+    public String toString() {
+        return "LessonsInGroup{" +
+                "idLessonInGroup=" + idLessonInGroup +
+                ", lessonId=" + lessonId +
+                ", groupId=" + groupId +
+                ", hoursPerWeek=" + hoursPerWeek +
+                '}';
+    }
 }

@@ -34,4 +34,12 @@ public class Speciality {
     public int hashCode() {
         return Objects.hash(idSpeciality, specialityName);
     }
+
+    @Override
+    public String toString() {
+        return "Speciality{" +
+                "idSpeciality=" + idSpeciality +
+                ", specialityName='" + specialityName + '\'' +
+                '}';
+    }
 }

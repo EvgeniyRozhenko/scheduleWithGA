@@ -43,4 +43,13 @@ public class ClassGroup {
     public int hashCode() {
         return Objects.hash(idClassGroup, groupName, groupSize);
     }
+
+    @Override
+    public String toString() {
+        return "ClassGroup{" +
+                "idClassGroup=" + idClassGroup +
+                ", groupName='" + groupName + '\'' +
+                ", groupSize=" + groupSize +
+                '}';
+    }
 }

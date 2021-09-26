@@ -43,4 +43,13 @@ public class Lesson {
     public int hashCode() {
         return Objects.hash(idLesson, lessonName, specialityId);
     }
+
+    @Override
+    public String toString() {
+        return "Lesson{" +
+                "idLesson=" + idLesson +
+                ", lessonName='" + lessonName + '\'' +
+                ", specialityId=" + specialityId +
+                '}';
+    }
 }

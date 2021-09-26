@@ -34,4 +34,12 @@ public class WeekDay {
     public int hashCode() {
         return Objects.hash(idWeekDay, dayName);
     }
+
+    @Override
+    public String toString() {
+        return "WeekDay{" +
+                "idWeekDay=" + idWeekDay +
+                ", dayName='" + dayName + '\'' +
+                '}';
+    }
 }

@@ -43,4 +43,13 @@ public class TimeSlot {
     public int hashCode() {
         return Objects.hash(idTimeSlot, timePeriodId, weekDayId);
     }
+
+    @Override
+    public String toString() {
+        return "TimeSlot{" +
+                "idTimeSlot=" + idTimeSlot +
+                ", timePeriodId=" + timePeriodId +
+                ", weekDayId=" + weekDayId +
+                '}';
+    }
 }

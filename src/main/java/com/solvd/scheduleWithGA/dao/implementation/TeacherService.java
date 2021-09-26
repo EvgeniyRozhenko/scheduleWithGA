@@ -17,7 +17,6 @@ public class TeacherService {
         int id = 1;
         try (SqlSession session = factory.openSession()) {
             ITeacherDAO teacherDAO = session.getMapper(ITeacherDAO.class);
-            teacher = teacherDAO.getById(1);
             while (true) {
                 teacher = teacherDAO.getById(id);
                 id++;

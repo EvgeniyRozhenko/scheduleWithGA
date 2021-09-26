@@ -61,4 +61,15 @@ public class Schedule {
     public int hashCode() {
         return Objects.hash(idSchedule, timeSlotId, teacherId, lessonInGroupId, classroomId);
     }
+
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "idSchedule=" + idSchedule +
+                ", timeSlotId=" + timeSlotId +
+                ", teacherId=" + teacherId +
+                ", lessonInGroupId=" + lessonInGroupId +
+                ", classroomId=" + classroomId +
+                '}';
+    }
 }

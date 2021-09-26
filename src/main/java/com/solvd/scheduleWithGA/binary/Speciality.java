@@ -6,11 +6,6 @@ public class Speciality {
     private int idSpeciality;
     private String specialityName;
 
-    public Speciality(int idSpeciality, String specialityName) {
-        this.idSpeciality = idSpeciality;
-        this.specialityName = specialityName;
-    }
-
     public int getIdSpeciality() {
         return idSpeciality;
     }

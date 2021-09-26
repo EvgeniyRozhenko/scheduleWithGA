@@ -7,12 +7,6 @@ public class TimeSlot {
     private int timePeriodId;
     private int weekDayId;
 
-    public TimeSlot(int idTimeSlot, int timePeriodId, int weekDayId) {
-        this.idTimeSlot = idTimeSlot;
-        this.timePeriodId = timePeriodId;
-        this.weekDayId = weekDayId;
-    }
-
     public int getIdTimeSlot() {
         return idTimeSlot;
     }

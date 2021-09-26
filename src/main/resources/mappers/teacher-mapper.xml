@@ -10,8 +10,8 @@
         WHERE t.idTeacher = #{id}
     </select>
     <resultMap id="teacherResultMap" type="com.solvd.scheduleWithGA.binary.Teacher" autoMapping ="false">
-        <id column="teacher_id" property="id"/>
+        <id column="teacher_id" property="idTeacher"/>
         <result column="teacher_fullName" property="fullName"/>
-        <result column="teacher_specialityId" property="speciality"/>
+        <result column="teacher_specialityId" property="specialityId"/>
     </resultMap>
 </mapper>

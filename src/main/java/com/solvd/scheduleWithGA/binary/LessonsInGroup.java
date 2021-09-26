@@ -8,13 +8,6 @@ public class LessonsInGroup {
     private int groupId;
     private int hoursPerWeek;
 
-    public LessonsInGroup(int idLessonInGroup, int lessonId, int groupId, int hoursPerWeek) {
-        this.idLessonInGroup = idLessonInGroup;
-        this.lessonId = lessonId;
-        this.groupId = groupId;
-        this.hoursPerWeek = hoursPerWeek;
-    }
-
     public int getIdLessonInGroup() {
         return idLessonInGroup;
     }

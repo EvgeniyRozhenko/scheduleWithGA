@@ -7,12 +7,6 @@ public class Classroom {
     private int roomNumber;
     private int capacity;
 
-    public Classroom(int idRoom, int roomNumber, int capacity) {
-        this.idRoom = idRoom;
-        this.roomNumber = roomNumber;
-        this.capacity = capacity;
-    }
-
     public int getIdRoom() {
         return idRoom;
     }

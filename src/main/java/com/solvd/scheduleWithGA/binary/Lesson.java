@@ -7,12 +7,6 @@ public class Lesson {
     private String lessonName;
     private int specialityId;
 
-    public Lesson(int idLesson, String lessonName, int specialityId) {
-        this.idLesson = idLesson;
-        this.lessonName = lessonName;
-        this.specialityId = specialityId;
-    }
-
     public int getIdLesson() {
         return idLesson;
     }

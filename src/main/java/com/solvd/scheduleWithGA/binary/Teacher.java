@@ -8,22 +8,12 @@ public class Teacher {
     private int specialityId;
 
 
-    public Teacher(int idTeacher, String fullName, int specialityId) {
-        this.idTeacher = idTeacher;
-        this.fullName = fullName;
-        this.specialityId = specialityId;
-    }
-
     public int getIdTeacher() {
         return idTeacher;
     }
 
     public void setIdTeacher(int idTeacher) {
         this.idTeacher = idTeacher;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getFullName() {
@@ -57,16 +47,14 @@ public class Teacher {
 
     }
 
-    public void setSpeciality(int speciality) {
-        this.speciality = speciality;
-    }
+
 
     @Override
     public String toString() {
         return "Teacher{" +
-                "id=" + id +
+                "id=" + idTeacher +
                 ", fullName='" + fullName + '\'' +
-                ", speciality=" + speciality +
+                ", speciality=" + specialityId +
                 '}';
     }
 }

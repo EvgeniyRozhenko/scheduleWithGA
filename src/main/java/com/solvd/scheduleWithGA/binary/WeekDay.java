@@ -6,11 +6,6 @@ public class WeekDay {
     private int idWeekDay;
     private String dayName;
 
-    public WeekDay(int idWeekDay, String dayName) {
-        this.idWeekDay = idWeekDay;
-        this.dayName = dayName;
-    }
-
     public int getIdWeekDay() {
         return idWeekDay;
     }

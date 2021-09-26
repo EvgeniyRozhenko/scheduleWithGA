@@ -18,5 +18,6 @@
     <mappers>
         <mapper resource="mappers/teacher-mapper.xml"/>
         <mapper resource="mappers/classroom-mapper.xml"/>
+        <mapper resource="mappers/timeslot-mapper.xml"/>
     </mappers>
 </configuration>

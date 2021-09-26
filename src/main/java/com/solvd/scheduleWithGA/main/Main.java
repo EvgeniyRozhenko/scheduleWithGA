@@ -1,9 +1,11 @@
 package com.solvd.scheduleWithGA.main;
 
-import com.solvd.scheduleWithGA.binary.ClassGroup;
+import com.solvd.scheduleWithGA.binary.Teacher;
 import com.solvd.scheduleWithGA.dao.implementation.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.HashMap;
 
 public class Main {
     private static final Logger LOGGER = LogManager.getLogger(Main.class);
@@ -19,5 +21,8 @@ public class Main {
         LOGGER.info(lessonService.getLessonHashMap());
         ClassGroupService classGroupService = new ClassGroupService();
         LOGGER.info(classGroupService.getClassGroupHashMap());
+
+        TeacherService teacherService1 = new TeacherService();
+        HashMap<Integer, Teacher> x = teacherService.getTeachersHashMap();
     }
 }

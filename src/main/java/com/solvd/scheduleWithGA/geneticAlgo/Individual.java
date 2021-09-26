@@ -24,7 +24,7 @@ public class Individual {
      *            The timetable information
      */
     public Individual(Timetable timetable) {
-        int numClasses = timetable.getNumClasses();
+        int numClasses = timetable.getAmountSchedules();
 
         // 1 gene for room, 1 for time, 1 for professor
         int chromosomeLength = numClasses * 3;

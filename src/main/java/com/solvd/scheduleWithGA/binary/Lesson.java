@@ -1,11 +1,13 @@
 package com.solvd.scheduleWithGA.binary;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Lesson {
     private int idLesson;
     private String lessonName;
     private int specialityId;
+    private ArrayList<Integer> teachersIds;
 
     public int getIdLesson() {
         return idLesson;
@@ -44,12 +46,21 @@ public class Lesson {
         return Objects.hash(idLesson, lessonName, specialityId);
     }
 
+    public ArrayList<Integer> getTeachersIds() {
+        return teachersIds;
+    }
+
+    public void setTeachersIds(ArrayList<Integer> teachersIds) {
+        this.teachersIds = teachersIds;
+    }
+
     @Override
     public String toString() {
         return "Lesson{" +
                 "idLesson=" + idLesson +
                 ", lessonName='" + lessonName + '\'' +
                 ", specialityId=" + specialityId +
+                ", teachersIds=" + teachersIds +
                 '}';
     }
 }

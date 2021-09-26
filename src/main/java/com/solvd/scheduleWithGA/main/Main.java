@@ -1,7 +1,7 @@
 package com.solvd.scheduleWithGA.main;
 
-import com.solvd.scheduleWithGA.dao.implementation.ClassroomService;
-import com.solvd.scheduleWithGA.dao.implementation.TeacherService;
+import com.solvd.scheduleWithGA.binary.ClassGroup;
+import com.solvd.scheduleWithGA.dao.implementation.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -12,6 +12,12 @@ public class Main {
         TeacherService teacherService = new TeacherService();
         LOGGER.info(teacherService.getTeachersHashMap());
         ClassroomService classroomService = new ClassroomService();
-        LOGGER.info(classroomService.getClassroombyId(1));
+        LOGGER.info(classroomService.getClassroomHashMap());
+        TimeSlotService timeSlotService = new TimeSlotService();
+        LOGGER.info(timeSlotService.getTimeSlotHashMap());
+        LessonService lessonService = new LessonService();
+        LOGGER.info(lessonService.getLessonHashMap());
+        ClassGroupService classGroupService = new ClassGroupService();
+        LOGGER.info(classGroupService.getClassGroupHashMap());
     }
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.scheduleWithGA.dao.interfaces.IClassGroupDAO">
+    <select id="getById" resultMap="classgroupResultMap" parameterType="int">
+        SELECT  c.idClassGroup as classgroup_id,
+                c.groupName as classgroup_name,
+                c.groupSize as classgroup_size
+        FROM ClassGroup c
+        WHERE c.idClassGroup = #{id};
+    </select>
+    <resultMap id="classgroupResultMap" type="com.solvd.scheduleWithGA.binary.ClassGroup">
+        <id column="classgroup_id" property="idClassGroup"/>
+        <result column="classgroup_name" property="groupName"/>
+        <result column="classgroup_size" property="groupSize"/>
+    </resultMap>
+</mapper>

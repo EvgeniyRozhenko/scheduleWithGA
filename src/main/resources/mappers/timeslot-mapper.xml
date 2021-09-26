@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.scheduleWithGA.dao.interfaces.ITimeSlotDAO">
+    <select id="getById" resultMap="timeslotResultMap" parameterType="int">
+        SELECT  t.idTimeSlot as timeslot_id,
+                t.timePeriodId as timeslot_timePeriodId,
+                t.weekDayId as timeslot_weekDayId
+        FROM TimeSlot t
+        WHERE t.idTimeSlot = #{id};
+    </select>
+    <resultMap id="timeslotResultMap" type="com.solvd.scheduleWithGA.binary.TimeSlot" autoMapping="false">
+        <id column="timeslot_id" property="idTimeSlot"/>
+        <result column="timeslot_timePeriodId" property="timePeriodId"/>
+        <result column="timeslot_weekDayId" property="weekDayId"/>
+    </resultMap>
+</mapper>

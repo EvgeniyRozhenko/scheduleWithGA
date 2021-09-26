@@ -2,9 +2,9 @@ CREATE DATABASE ScheduleDB;
 USE ScheduleDB;
 
 CREATE TABLE Speciality(
-	idSpeciality int not null auto_increment,
-    specialityName varchar(45) not null,
-    PRIMARY KEY(idSpeciality)
+idSpeciality int not null auto_increment,
+specialityName varchar(45) not null,
+PRIMARY KEY(idSpeciality)
 );
 
 CREATE TABLE Teacher(

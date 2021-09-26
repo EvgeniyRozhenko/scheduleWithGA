@@ -62,7 +62,7 @@ public class GeneticAlgo {
 
         // Create new timetable object to use -- cloned from an existing timetable
         Timetable threadTimetable = new Timetable(timetable);
-        threadTimetable.createClasses(individual);
+        threadTimetable.createSchedules(individual);
 
         // Calculate fitness
         int clashes = threadTimetable.calcClashes();

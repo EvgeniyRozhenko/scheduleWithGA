@@ -19,6 +19,16 @@ public class Main {
         TeacherService teacherService = new TeacherService();
         LOGGER.info(teacherService.getTeacherById(1));
         TimeSlotService timeSlotService = new TimeSlotService();
+
+        LOGGER.info(timeSlotService.getTimeSlotHashMap());
+        LessonService lessonService = new LessonService();
+        LOGGER.info(lessonService.getLessonHashMap());
+        ClassGroupService classGroupService = new ClassGroupService();
+        LOGGER.info(classGroupService.getClassGroupHashMap());
+
+        TeacherService teacherService1 = new TeacherService();
+        HashMap<Integer, Teacher> x = teacherService.getTeachersHashMap();
+
         LOGGER.info(timeSlotService.getTimslotById(1));
         ClassroomService classroomService = new ClassroomService();
         LOGGER.info(classroomService.getClassroomById(1));

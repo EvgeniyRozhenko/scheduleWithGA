@@ -1,166 +1,150 @@
 package com.solvd.scheduleWithGA.geneticAlgo;
 
-import com.solvd.scheduleWithGA.binary.Classroom;
+import com.solvd.scheduleWithGA.binary.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Timetable {
     private final HashMap<Integer, Classroom> rooms;
-    private final HashMap<Integer, Professor> professors;
-    private final HashMap<Integer, Module> modules;
-    private final HashMap<Integer, Group> groups;
-    private final HashMap<Integer, Timeslot> timeslots;
-    private Class classes[];
+    private final HashMap<Integer, Teacher> teachers;
+    private final HashMap<Integer, Lesson> lessons;
+    private final HashMap<Integer, ClassGroup> groups;
+    private final HashMap<Integer, TimeSlot> timeslots;
 
-    private int numClasses = 0;
+    private ArrayList<Schedule> schedules = new ArrayList<>();
 
-    /**
-     * Initialize new Timetable
-     */
+    private int amountSchedules = 0;
+
+
     public Timetable() {
-        this.rooms = new HashMap<Integer, Classroom>();
-        this.professors = new HashMap<Integer, Professor>();
-        this.modules = new HashMap<Integer, Module>();
-        this.groups = new HashMap<Integer, Group>();
-        this.timeslots = new HashMap<Integer, Timeslot>();
+        this.rooms = new HashMap<>();
+        this.teachers = new HashMap<>();
+        this.lessons = new HashMap<>();
+        this.groups = new HashMap<>();
+        this.timeslots = new HashMap<>();
     }
 
-    /**
-     * "Clone" a timetable. We use this before evaluating a timetable so we have
-     * a unique container for each set of classes created by "createClasses".
-     * Truthfully, that's not entirely necessary (no big deal if we wipe out and
-     * reuse the .classes property here), but Chapter 6 discusses
-     * multi-threading for fitness calculations, and in order to do that we need
-     * separate objects so that one thread doesn't step on another thread's
-     * toes. So this constructor isn't _entirely_ necessary for Chapter 5, but
-     * you'll see it in action in Chapter 6.
-     *
-     * @param cloneable
-     */
     public Timetable(Timetable cloneable) {
         this.rooms = cloneable.getRooms();
-        this.professors = cloneable.getProfessors();
-        this.modules = cloneable.getModules();
+        this.teachers = cloneable.getTeachers();
+        this.lessons = cloneable.getLessons();
         this.groups = cloneable.getGroups();
         this.timeslots = cloneable.getTimeslots();
     }
 
-    private HashMap<Integer, Group> getGroups() {
+    private HashMap<Integer, ClassGroup> getGroups() {
         return this.groups;
     }
 
-    private HashMap<Integer, Timeslot> getTimeslots() {
+    private HashMap<Integer, TimeSlot> getTimeslots() {
         return this.timeslots;
     }
 
-    private HashMap<Integer, Module> getModules() {
-        return this.modules;
+    private HashMap<Integer, Lesson> getLessons() {
+        return this.lessons;
     }
 
-    private HashMap<Integer, Professor> getProfessors() {
-        return this.professors;
+    private HashMap<Integer, Teacher> getTeachers() {
+        return this.teachers;
     }
 
-    /**
-     * Add new room
-     *
-     * @param roomId
-     * @param roomName
-     * @param capacity
-     */
-    public void addRoom(int roomId, String roomName, int capacity) {
-        this.rooms.put(roomId, new Classroom(roomId, roomName, capacity));
-    }
+//    public void addRoom(int roomId, String roomName, int capacity) {
+//        this.rooms.put(roomId, new Classroom(roomId, roomName, capacity));
+//    }
 
-    /**
-     * Add new professor
-     *
-     * @param professorId
-     * @param professorName
-     */
-    public void addProfessor(int professorId, String professorName) {
-        this.professors.put(professorId, new Professor(professorId, professorName));
-    }
+//    public void addProfessor(int professorId, String professorName) {
+//        this.teachers.put(professorId, new Teacher(professorId, professorName));
+//    }
 
-    /**
-     * Add new module
-     *
-     * @param moduleId
-     * @param moduleCode
-     * @param module
-     * @param professorIds
-     */
-    public void addModule(int moduleId, String moduleCode, String module, int professorIds[]) {
-        this.modules.put(moduleId, new Module(moduleId, moduleCode, module, professorIds));
-    }
+//    /**
+//     * Add new module
+//     *
+//     * @param moduleId
+//     * @param moduleCode
+//     * @param module
+//     * @param professorIds
+//     */
+//    public void addModule(int moduleId, String moduleCode, String module, int professorIds[]) {
+//        this.lessons.put(moduleId, new Module(moduleId, moduleCode, module, professorIds));
+//    }
 
-    /**
-     * Add new group
-     *
-     * @param groupId
-     * @param groupSize
-     * @param moduleIds
-     */
-    public void addGroup(int groupId, int groupSize, int moduleIds[]) {
-        this.groups.put(groupId, new Group(groupId, groupSize, moduleIds));
-        this.numClasses = 0;
-    }
+//    /**
+//     * Add new group
+//     *
+//     * @param groupId
+//     * @param groupSize
+//     * @param moduleIds
+//     */
+//    public void addGroup(int groupId, int groupSize, int moduleIds[]) {
+//        this.groups.put(groupId, new Group(groupId, groupSize, moduleIds));
+//        this.amountSchedules = 0;
+//    }
+
+//    /**
+//     * Add new timeslot
+//     *
+//     * @param timeslotId
+//     * @param timeslot
+//     */
+//    public void addTimeslot(int timeslotId, String timeslot) {
+//        this.timeslots.put(timeslotId, new Timeslot(timeslotId, timeslot));
+//    }
 
     /**
-     * Add new timeslot
-     *
-     * @param timeslotId
-     * @param timeslot
+     * Get number of classes that need scheduling
+     * @return numClasses
      */
-    public void addTimeslot(int timeslotId, String timeslot) {
-        this.timeslots.put(timeslotId, new Timeslot(timeslotId, timeslot));
+    public int getAmountSchedules() {
+        if (this.amountSchedules > 0) {
+            return this.amountSchedules;
+        }
+
+        int numberOfSchedules = 0;
+//        ClassGroup[] groups = this.groups.values().toArray(new ClassGroup[this.groups.size()]);
+        ArrayList<ClassGroup> groups = (ArrayList<ClassGroup>) this.groups.values();
+        for (ClassGroup group : groups) {
+            numberOfSchedules += group.getModuleIds().length;
+        }
+        this.amountSchedules = numberOfSchedules;
+
+        return this.amountSchedules;
     }
 
-    /**
-     * Create classes using individual's chromosome
-     *
-     * One of the two important methods in this class; given a chromosome,
-     * unpack it and turn it into an array of Class (with a capital C) objects.
-     * These Class objects will later be evaluated by the calcClashes method,
-     * which will loop through the Classes and calculate the number of
-     * conflicting timeslots, rooms, professors, etc.
-     *
-     * While this method is important, it's not really difficult or confusing.
-     * Just loop through the chromosome and create Class objects and store them.
-     *
-     * @param individual
-     */
-    public void createClasses(Individual individual) {
-        // Init classes
-        Class classes[] = new Class[this.getNumClasses()];
+    public void createSchedules(Individual individual) {
+        // Init schedules
+        ArrayList<Schedule> schedules = new ArrayList<>(this.getAmountSchedules());
 
         // Get individual's chromosome
-        int chromosome[] = individual.getChromosome();
+        int[] chromosome = individual.getChromosome();
         int chromosomePos = 0;
-        int classIndex = 0;
+        int scheduleIndex = 0;
 
-        for (Group group : this.getGroupsAsArray()) {
+        for (ClassGroup group : this.getGroupsAsArray()) {
             int moduleIds[] = group.getModuleIds();
             for (int moduleId : moduleIds) {
-                classes[classIndex] = new Class(classIndex, group.getGroupId(), moduleId);
+                schedules[scheduleIndex] = new Class(scheduleIndex, group.getGroupId(), moduleId);
 
                 // Add timeslot
-                classes[classIndex].addTimeslot(chromosome[chromosomePos]);
+                schedules[scheduleIndex].addTimeslot(chromosome[chromosomePos]);
                 chromosomePos++;
 
                 // Add room
-                classes[classIndex].setRoomId(chromosome[chromosomePos]);
+                schedules[scheduleIndex].setRoomId(chromosome[chromosomePos]);
                 chromosomePos++;
 
                 // Add professor
-                classes[classIndex].addProfessor(chromosome[chromosomePos]);
+                schedules[scheduleIndex].addProfessor(chromosome[chromosomePos]);
                 chromosomePos++;
 
-                classIndex++;
+                scheduleIndex++;
             }
         }
 
-        this.classes = classes;
+        this.schedules = schedules;
     }
 
     /**
@@ -198,7 +182,7 @@ public class Timetable {
      * @return professor
      */
     public Professor getProfessor(int professorId) {
-        return (Professor) this.professors.get(professorId);
+        return (Professor) this.teachers.get(professorId);
     }
 
     /**
@@ -208,7 +192,7 @@ public class Timetable {
      * @return module
      */
     public Module getModule(int moduleId) {
-        return (Module) this.modules.get(moduleId);
+        return (Module) this.lessons.get(moduleId);
     }
 
     /**
@@ -247,8 +231,8 @@ public class Timetable {
      * @param timeslotId
      * @return timeslot
      */
-    public Timeslot getTimeslot(int timeslotId) {
-        return (Timeslot) this.timeslots.get(timeslotId);
+    public TimeSlot getTimeslot(int timeslotId) {
+        return (TimeSlot) this.timeslots.get(timeslotId);
     }
 
     /**
@@ -256,9 +240,9 @@ public class Timetable {
      *
      * @return timeslot
      */
-    public Timeslot getRandomTimeslot() {
+    public TimeSlot getRandomTimeslot() {
         Object[] timeslotArray = this.timeslots.values().toArray();
-        Timeslot timeslot = (Timeslot) timeslotArray[(int) (timeslotArray.length * Math.random())];
+        TimeSlot timeslot = (TimeSlot) timeslotArray[(int) (timeslotArray.length * Math.random())];
         return timeslot;
     }
 
@@ -267,28 +251,8 @@ public class Timetable {
      *
      * @return classes
      */
-    public Class[] getClasses() {
-        return this.classes;
-    }
-
-    /**
-     * Get number of classes that need scheduling
-     *
-     * @return numClasses
-     */
-    public int getNumClasses() {
-        if (this.numClasses > 0) {
-            return this.numClasses;
-        }
-
-        int numClasses = 0;
-        Group groups[] = (Group[]) this.groups.values().toArray(new Group[this.groups.size()]);
-        for (Group group : groups) {
-            numClasses += group.getModuleIds().length;
-        }
-        this.numClasses = numClasses;
-
-        return this.numClasses;
+    public Schedule[] getSchedules() {
+        return this.schedules;
     }
 
     /**
@@ -316,7 +280,7 @@ public class Timetable {
     public int calcClashes() {
         int clashes = 0;
 
-        for (Class classA : this.classes) {
+        for (Class classA : this.schedules) {
             // Check room capacity
             int roomCapacity = this.getRoom(classA.getRoomId()).getRoomCapacity();
             int groupSize = this.getGroup(classA.getGroupId()).getGroupSize();
@@ -326,7 +290,7 @@ public class Timetable {
             }
 
             // Check if room is taken
-            for (Class classB : this.classes) {
+            for (Class classB : this.schedules) {
                 if (classA.getRoomId() == classB.getRoomId() && classA.getTimeslotId() == classB.getTimeslotId()
                         && classA.getClassId() != classB.getClassId()) {
                     clashes++;
@@ -335,7 +299,7 @@ public class Timetable {
             }
 
             // Check if professor is available
-            for (Class classB : this.classes) {
+            for (Class classB : this.schedules) {
                 if (classA.getProfessorId() == classB.getProfessorId() && classA.getTimeslotId() == classB.getTimeslotId()
                         && classA.getClassId() != classB.getClassId()) {
                     clashes++;

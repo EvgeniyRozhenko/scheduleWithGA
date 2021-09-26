@@ -1,11 +1,21 @@
 package com.solvd.scheduleWithGA.binary;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class ClassGroup {
     private int idClassGroup;
     private String groupName;
     private int groupSize;
+    private ArrayList<Integer> lessonsIds;
+
+    public ArrayList<Integer> getLessonsIds() {
+        return lessonsIds;
+    }
+
+    public void setLessonsIds(ArrayList<Integer> lessonsIds) {
+        this.lessonsIds = lessonsIds;
+    }
 
     public int getIdClassGroup() {
         return idClassGroup;
@@ -50,6 +60,7 @@ public class ClassGroup {
                 "idClassGroup=" + idClassGroup +
                 ", groupName='" + groupName + '\'' +
                 ", groupSize=" + groupSize +
+                ", lessonsIds=" + lessonsIds +
                 '}';
     }
 }

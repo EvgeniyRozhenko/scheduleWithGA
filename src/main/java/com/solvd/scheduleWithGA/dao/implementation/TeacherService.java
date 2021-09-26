@@ -26,4 +26,13 @@ public class TeacherService {
         }
         return result;
     }
+
+    public Teacher getTeacherById(int id){
+        Teacher teacher;
+        try (SqlSession session = factory.openSession()) {
+            ITeacherDAO teacherDAO = session.getMapper(ITeacherDAO.class);
+            teacher = teacherDAO.getById(id);
+        }
+        return teacher;
+    }
 }

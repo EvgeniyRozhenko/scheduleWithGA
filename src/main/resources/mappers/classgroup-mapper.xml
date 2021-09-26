@@ -5,13 +5,18 @@
     <select id="getById" resultMap="classgroupResultMap" parameterType="int">
         SELECT  c.idClassGroup as classgroup_id,
                 c.groupName as classgroup_name,
-                c.groupSize as classgroup_size
+                c.groupSize as classgroup_size,
+                l.lessonId as lesson_id
         FROM ClassGroup c
+        LEFT JOIN LessonInGroup l ON c.idClassGroup = l.groupId
         WHERE c.idClassGroup = #{id};
     </select>
     <resultMap id="classgroupResultMap" type="com.solvd.scheduleWithGA.binary.ClassGroup">
         <id column="classgroup_id" property="idClassGroup"/>
         <result column="classgroup_name" property="groupName"/>
         <result column="classgroup_size" property="groupSize"/>
+        <collection property="lessonsIds" ofType="Integer" javaType="ArrayList" >
+            <id column="lesson_id"/>
+        </collection>
     </resultMap>
 </mapper>

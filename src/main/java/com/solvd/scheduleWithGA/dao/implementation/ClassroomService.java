@@ -26,4 +26,13 @@ public class ClassroomService {
         }
         return result;
     }
+
+    public Classroom getClassroomById(int id){
+        Classroom classroom;
+        try (SqlSession session = factory.openSession()) {
+            IClassroomDAO classroomDAO = session.getMapper(IClassroomDAO.class);
+            classroom = classroomDAO.getById(id);
+        }
+        return classroom;
+    }
 }

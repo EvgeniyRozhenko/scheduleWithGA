@@ -5,13 +5,18 @@
     <select id="getById" resultMap="lessonResultMap" parameterType="int">
         SELECT  l.idLesson as lesson_id,
                 l.lessonName as lesson_name,
-                l.specialityId as lesson_speciality
+                l.specialityId as lesson_speciality,
+                t.idTeacher as teacher_id
         FROM Lesson l
+        LEFT JOIN Teacher t ON l.specialityId = t.specialityId
         WHERE l.idLesson = #{id};
     </select>
     <resultMap id="lessonResultMap" type="com.solvd.scheduleWithGA.binary.Lesson">
         <id column="lesson_id" property="idLesson"/>
         <result column="lesson_name" property="lessonName"/>
         <result column="lesson_speciality" property="specialityId"/>
+        <collection property="teachersIds" ofType="Integer" javaType="ArrayList" >
+            <id column="teacher_id"/>
+        </collection>
     </resultMap>
 </mapper>

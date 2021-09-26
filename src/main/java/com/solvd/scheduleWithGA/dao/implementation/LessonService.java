@@ -28,4 +28,14 @@ public class LessonService {
         }
         return result;
     }
+
+    public Lesson getLessonById(int id)
+    {
+        Lesson lesson;
+        try(SqlSession session = factory.openSession()) {
+            ILessonDAO lessonDAO = session.getMapper(ILessonDAO.class);
+            lesson = lessonDAO.getById(id);
+        }
+        return lesson;
+    }
 }

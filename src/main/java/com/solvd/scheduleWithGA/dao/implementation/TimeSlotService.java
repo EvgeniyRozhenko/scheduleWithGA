@@ -28,4 +28,13 @@ public class TimeSlotService {
         }
         return result;
     }
+
+    public TimeSlot getTimslotById(int id){
+        TimeSlot timeSlot;
+        try(SqlSession session = factory.openSession()) {
+            ITimeSlotDAO classroomDAO = session.getMapper(ITimeSlotDAO.class);
+            timeSlot = classroomDAO.getById(id);
+        }
+        return timeSlot;
+    }
 }

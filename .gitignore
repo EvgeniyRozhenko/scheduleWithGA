@@ -2,3 +2,5 @@
 .idea
 *.iml
 target/
+resources/ScheduleScheme.mwb.bak
+resources/app.properties

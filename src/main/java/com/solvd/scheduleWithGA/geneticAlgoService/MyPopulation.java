@@ -2,7 +2,7 @@ package com.solvd.scheduleWithGA.geneticAlgoService;
 
 import java.util.Arrays;
 
-public class MyPopulation implements {
+public class MyPopulation {
     private MyIndividual[] population;
     private double populationFitness = -1;
 

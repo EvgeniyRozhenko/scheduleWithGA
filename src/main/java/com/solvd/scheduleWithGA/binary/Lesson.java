@@ -54,6 +54,10 @@ public class Lesson {
         this.teachersIds = teachersIds;
     }
 
+    public int getRandomTeacherId() {
+        return teachersIds.get((int) (teachersIds.size() * Math.random()));
+    }
+
     @Override
     public String toString() {
         return "Lesson{" +

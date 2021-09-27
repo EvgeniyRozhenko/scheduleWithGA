@@ -2,9 +2,5 @@
 .idea
 *.iml
 target/
-<<<<<<< HEAD
 resources/ScheduleScheme.mwb.bak
 resources/app.properties
-=======
-ScheduleScheme.mwb.bak
->>>>>>> 1539b3c4dafdf34b5a4f7dff5255fe44bac96193

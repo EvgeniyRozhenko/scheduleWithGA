@@ -80,7 +80,7 @@ public class ScheduleCreatorService {
     }
 
     public TimeSlot getRandomTimeslot() {
-        return this.timeslots.get((int)(Math.random() * timeslots.size() + 1));
+        return this.timeslots.get((int) (Math.random() * timeslots.size() + 1));
     }
 
     public Classroom getRandomClassroom() {

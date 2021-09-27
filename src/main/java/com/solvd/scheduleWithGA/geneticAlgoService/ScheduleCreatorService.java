@@ -12,26 +12,6 @@ public class ScheduleCreatorService {
     private HashMap<Integer, Lesson> lessons;
     private HashMap<Integer, ClassGroup> groups;
 
-    public void setRooms(HashMap<Integer, Classroom> rooms) {
-        this.rooms = rooms;
-    }
-
-    public void setTeachers(HashMap<Integer, Teacher> teachers) {
-        this.teachers = teachers;
-    }
-
-    public void setLessons(HashMap<Integer, Lesson> lessons) {
-        this.lessons = lessons;
-    }
-
-    public void setGroups(HashMap<Integer, ClassGroup> groups) {
-        this.groups = groups;
-    }
-
-    public void setTimeslots(HashMap<Integer, TimeSlot> timeslots) {
-        this.timeslots = timeslots;
-    }
-
     private HashMap<Integer, TimeSlot> timeslots;
 
     private ArrayList<Schedule> schedules;
@@ -76,17 +56,36 @@ public class ScheduleCreatorService {
         return this.rooms;
     }
 
+    public void setRooms(HashMap<Integer, Classroom> rooms) {
+        this.rooms = rooms;
+    }
+
+    public void setTeachers(HashMap<Integer, Teacher> teachers) {
+        this.teachers = teachers;
+    }
+
+    public void setLessons(HashMap<Integer, Lesson> lessons) {
+        this.lessons = lessons;
+    }
+
+    public void setGroups(HashMap<Integer, ClassGroup> groups) {
+        this.groups = groups;
+    }
+
+    public void setTimeslots(HashMap<Integer, TimeSlot> timeslots) {
+        this.timeslots = timeslots;
+    }
+
     public HashMap<Integer, ClassGroup> getGroupsAsArray() {
         return this.groups;
     }
 
     public TimeSlot getRandomTimeslot() {
-        return timeslots.get((int)(Math.random()*timeslots.size()+1));
+        return this.timeslots.get((int)(Math.random() * timeslots.size() + 1));
     }
 
     public Classroom getRandomClassroom() {
-        return rooms.get((int)(Math.random()* rooms.size()+1));
-    }
+        return this.rooms.get((int)(Math.random() * timeslots.size() + 1));
 
     public Lesson getLessonById(int lessonId) {
         return this.lessons.get(lessonId);
@@ -99,7 +98,7 @@ public class ScheduleCreatorService {
         }
 
         int numberOfSchedules = 0;
-        //ArrayList<ClassGroup> groups = (ArrayList<ClassGroup>) this.groups.values();
+
         for (ClassGroup group : this.groups.values()) {
             numberOfSchedules += group.getLessonsIds().size();
         }
@@ -107,16 +106,5 @@ public class ScheduleCreatorService {
 
         return this.amountSchedules;
     }
-
-//    public void createSchedules(Individual individual) {
-//        Schedule[] schedules = new Schedule[this.getAmountSchedules()]; //тут не обзательно делать размерность,
-//                                                                                    // раз я заменил массив на эррейЛист
-//        int[] chromosome = individual.getChromosome();
-//
-//
-//
-//    }
-
-
 
 }

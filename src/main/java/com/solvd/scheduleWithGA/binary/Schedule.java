@@ -9,12 +9,9 @@ public class Schedule {
     private int lessonInGroupId;
     private int classroomId;
 
-    public Schedule(int idSchedule, int timeSlotId, int teacherId, int lessonInGroupId, int classroomId) {
+    public Schedule(int idSchedule, int lessonInGroupId) {
         this.idSchedule = idSchedule;
-        this.timeSlotId = timeSlotId;
-        this.teacherId = teacherId;
         this.lessonInGroupId = lessonInGroupId;
-        this.classroomId = classroomId;
     }
 
     public int getIdSchedule() {

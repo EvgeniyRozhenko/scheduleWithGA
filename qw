@@ -1,0 +1,171 @@
+[33mcommit c69b2123b5f99048931ca8dd94caba92bc340108[m[33m ([m[1;36mHEAD -> [m[1;32myevgeniy[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: 90aef3d a4c99b9
+Author: Fiddler <66553025+EvgeniyRozhenko@users.noreply.github.com>
+Date:   Sun Sep 26 19:47:44 2021 +0300
+
+    Merge pull request #9 from EvgeniyRozhenko/yevgeniy
+    
+    passing
+
+[33mcommit a4c99b9dc98162206be6d2f6d116defc962befc4[m
+Merge: dc66966 90aef3d
+Author: Fiddler <66553025+EvgeniyRozhenko@users.noreply.github.com>
+Date:   Sun Sep 26 19:47:27 2021 +0300
+
+    Merge branch 'master' into yevgeniy
+
+[33mcommit dc66966ff8483c0949dbc5fe08437ce1bf28ed76[m[33m ([m[1;31morigin/yevgeniy[m[33m)[m
+Author: Evgeniy Rozhenko <evgeniyrojenko@gmail.com>
+Date:   Sun Sep 26 19:44:07 2021 +0300
+
+    passing
+
+[33mcommit 90aef3d78096ae63411a67bd80e5e508c9509ecc[m
+Merge: 10685c7 80cd9cc
+Author: Dzotz <34630010+Dzotz@users.noreply.github.com>
+Date:   Sun Sep 26 19:40:53 2021 +0300
+
+    Merge pull request #8 from EvgeniyRozhenko/Zotov
+    
+    merged last commits with changes to Lesson and ClassGroup pojo classes
+
+[33mcommit 80cd9ccdf413948cc2f7269a6d245df09912fadf[m
+Merge: a713ede 68e2194
+Author: Dzotz <danilo.zotov@gmail.com>
+Date:   Sun Sep 26 19:37:35 2021 +0300
+
+    Merge remote-tracking branch 'origin/Zotov' into Zotov
+
+[33mcommit a713ede969e0c35c8e2480c2d0920046361b24df[m
+Author: Dzotz <danilo.zotov@gmail.com>
+Date:   Sun Sep 26 19:37:10 2021 +0300
+
+    added getById methods to services and modified pojo classes of ClassGroup and Lesson with additional arrays
+
+[33mcommit 68e219409057f17d97853dc72e1597239cf25bb4[m
+Merge: 998916e 10685c7
+Author: Dzotz <34630010+Dzotz@users.noreply.github.com>
+Date:   Sun Sep 26 14:51:00 2021 +0300
+
+    Merge pull request #7 from EvgeniyRozhenko/master
+    
+    Merge pull request #6 from EvgeniyRozhenko/Zotov
+
+[33mcommit 10685c742188605e1f327fa1af4a104fd611aee8[m
+Merge: 1a1b26d 998916e
+Author: Dzotz <34630010+Dzotz@users.noreply.github.com>
+Date:   Sun Sep 26 14:49:29 2021 +0300
+
+    Merge pull request #6 from EvgeniyRozhenko/Zotov
+    
+    Merge all commits with service realization
+
+[33mcommit 998916ec71c72744ea0af25cd786a80388e76bbd[m
+Author: Dzotz <danilo.zotov@gmail.com>
+Date:   Sun Sep 26 14:44:54 2021 +0300
+
+    realized services methods to get hashmaps from tables
+
+[33mcommit 098a5d1b221b0010ee9b99beeb944fb5b34c8b30[m
+Author: Dzotz <danilo.zotov@gmail.com>
+Date:   Sun Sep 26 14:30:53 2021 +0300
+
+    added classgroup-mapper and realized for getting classgroup by id
+
+[33mcommit 1b132a6d41881564c4e2a4b667f20e08f273a072[m
+Author: Dzotz <danilo.zotov@gmail.com>
+Date:   Sun Sep 26 14:17:06 2021 +0300
+
+    added lesson-mapper and realized for getting lesson by id
+
+[33mcommit b9e3b4f49e23b25cf67b00582e87e4424b1d8ea9[m
+Author: Dzotz <danilo.zotov@gmail.com>
+Date:   Sun Sep 26 14:04:27 2021 +0300
+
+    added timeslot-mapper and realized for getting timeslot by id
+
+[33mcommit e54d7660198a0995406c5b0b18e6ae2ab61e9c6b[m
+Merge: 4fb601c 1a1b26d
+Author: Dzotz <34630010+Dzotz@users.noreply.github.com>
+Date:   Sun Sep 26 13:38:51 2021 +0300
+
+    Merge pull request #5 from EvgeniyRozhenko/master
+    
+    Get Zotov up to date
+
+[33mcommit 1a1b26dd610725eec462a221c6fd421e61ce495d[m
+Merge: 7ce5867 4fb601c
+Author: Dzotz <34630010+Dzotz@users.noreply.github.com>
+Date:   Sun Sep 26 13:37:05 2021 +0300
+
+    Merge pull request #4 from EvgeniyRozhenko/Zotov
+    
+    Merge pull request #3 from EvgeniyRozhenko/master
+
+[33mcommit 7ce5867e5e7d5fef25f2ec7c8bf05edbdaa906ca[m
+Author: Dzotz <danilo.zotov@gmail.com>
+Date:   Sun Sep 26 13:34:02 2021 +0300
+
+    added ToString methods to pojo classes, created interfaces and services to classes needed by genetic algo, realized classroom-mapper and ClassroomService
+
+[33mcommit c37ef7a9c576f2ea9c91790abead67b5e3b2052d[m
+Author: Dzotz <danilo.zotov@gmail.com>
+Date:   Sun Sep 26 12:59:16 2021 +0300
+
+    redacted PoJo classes, added getTeachersHashMap method to TeacherService
+
+[33mcommit 4fb601c56b4432f58e1f9ab30763fadcef030ea7[m
+Merge: f25dab2 641a0a5
+Author: Dzotz <34630010+Dzotz@users.noreply.github.com>
+Date:   Sun Sep 26 12:42:28 2021 +0300
+
+    Merge pull request #3 from EvgeniyRozhenko/master
+    
+    Merge master to Zotov branch
+
+[33mcommit 641a0a55cd269664816b3db7757d6e293539a9b5[m
+Merge: e6e4dad f25dab2
+Author: Dzotz <34630010+Dzotz@users.noreply.github.com>
+Date:   Sun Sep 26 12:41:51 2021 +0300
+
+    Merge branch 'Zotov' into master
+
+[33mcommit e6e4dadf2c587c1d47cd7af0661fd66ecb2981d6[m
+Merge: 980b0eb 91ed4e9
+Author: Fiddler <66553025+EvgeniyRozhenko@users.noreply.github.com>
+Date:   Sun Sep 26 12:29:17 2021 +0300
+
+    Merge pull request #2 from EvgeniyRozhenko/yevgeniy
+    
+    added pojo and sql fill up tables
+
+[33mcommit 91ed4e9dfc3053f9193913b8c5fa7d31fb82b430[m
+Merge: 692bcc5 980b0eb
+Author: Fiddler <66553025+EvgeniyRozhenko@users.noreply.github.com>
+Date:   Sun Sep 26 12:29:03 2021 +0300
+
+    Merge branch 'master' into yevgeniy
+
+[33mcommit 692bcc5e91bd7799cbdaf9436242504c67fc1c46[m
+Author: Evgeniy Rozhenko <evgeniyrojenko@gmail.com>
+Date:   Sun Sep 26 01:08:15 2021 +0300
+
+    added pojo and sql fill up tables
+
+[33mcommit f25dab2030fff31d9490093b22c6fc9483bcb57b[m
+Author: Dzotz <danilo.zotov@gmail.com>
+Date:   Sat Sep 25 19:01:15 2021 +0300
+
+    Configured mybatis for project and added test method with getting Teacher from db by id
+
+[33mcommit 980b0ebd73cdb5c56f26ab18bea938119c7fee0b[m
+Author: Dzotz <danilo.zotov@gmail.com>
+Date:   Sat Sep 25 14:56:46 2021 +0300
+
+    Updated ScheduleDB, created FillSchedule
+
+[33mcommit 5737e39ad9eb0eb36a31aba2a2740c3775fccb5e[m[33m ([m[1;32mmaster[m[33m)[m
+Author: Evgeniy Rozhenko <evgeniyrojenko@gmail.com>
+Date:   Sat Sep 25 11:48:58 2021 +0300
+
+    sql tables and scheme added

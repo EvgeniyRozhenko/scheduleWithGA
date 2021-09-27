@@ -21,7 +21,6 @@ public class MyIndividual {
         int amountSchedules = timetable.getAmountSchedules();
 
         // 1 ген для classroom, 1 для timeslot, 1 для teacher
-        // к примеру кол-во 3. "123". 3*3=9. теперь "123_123_123" где 123 для classroom, timeslot и teacher
         int chromosomeLength = amountSchedules * 3;
         // создаём случайного индивида
         int[] newChromosome = new int[chromosomeLength];

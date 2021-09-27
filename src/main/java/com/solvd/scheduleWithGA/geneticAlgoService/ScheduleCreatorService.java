@@ -11,7 +11,6 @@ public class ScheduleCreatorService {
     private HashMap<Integer, Teacher> teachers;
     private HashMap<Integer, Lesson> lessons;
     private HashMap<Integer, ClassGroup> groups;
-
     private HashMap<Integer, TimeSlot> timeslots;
 
     private ArrayList<Schedule> schedules;
@@ -81,16 +80,16 @@ public class ScheduleCreatorService {
     }
 
     public TimeSlot getRandomTimeslot() {
-        return this.timeslots.get((int)(Math.random() * timeslots.size() + 1));
+        return this.timeslots.get((int) (Math.random() * timeslots.size() + 1));
     }
 
     public Classroom getRandomClassroom() {
-        return this.rooms.get((int)(Math.random() * timeslots.size() + 1));
+        return this.rooms.get((int) (Math.random() * rooms.size() + 1));
+    }
 
     public Lesson getLessonById(int lessonId) {
         return this.lessons.get(lessonId);
     }
-
 
     public int getAmountSchedules() {
         if (this.amountSchedules > 0) {

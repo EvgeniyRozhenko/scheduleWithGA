@@ -1,7 +1,5 @@
 package com.solvd.scheduleWithGA.runner;
 
-import com.solvd.scheduleWithGA.binary.ClassGroup;
-import com.solvd.scheduleWithGA.binary.Classroom;
 import com.solvd.scheduleWithGA.dao.implementation.*;
 
 import com.solvd.scheduleWithGA.geneticAlgoService.MyIndividual;
@@ -13,8 +11,6 @@ import org.apache.logging.log4j.Logger;
 public class Runner {
     private static final Logger LOGGER = LogManager.getLogger(Runner.class);
     public static void main(String[] args) {
-
-
 
         ClassroomService classroomService = new ClassroomService();
         LessonService lessonService = new LessonService();

@@ -9,6 +9,11 @@ public class Schedule {
     private int lessonInGroupId;
     private int classroomId;
 
+    public Schedule(int idSchedule, int lessonInGroupId) {
+        this.idSchedule = idSchedule;
+        this.lessonInGroupId = lessonInGroupId;
+    }
+
     public int getIdSchedule() {
         return idSchedule;
     }

@@ -7,6 +7,8 @@ import com.solvd.scheduleWithGA.utils.MyBatisFactory;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import java.util.ArrayList;
+
 public class ScheduleService {
     private final static SqlSessionFactory factory = MyBatisFactory.getSessionFactory();
 
@@ -21,5 +23,14 @@ public class ScheduleService {
                 session.rollback();
             }
         }
+    }
+
+    public ArrayList<Schedule> getScheduleByDayId(int dayId){
+        ArrayList<Schedule> schedules = new ArrayList<>();
+        try(SqlSession session = factory.openSession()) {
+            IScheduleDAO scheduleDAO = session.getMapper(IScheduleDAO.class);
+            schedules = scheduleDAO.getScheduleForDay(dayId);
+        }
+        return schedules;
     }
 }

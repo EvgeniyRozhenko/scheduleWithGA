@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.scheduleWithGA.dao.interfaces.ITimePeriodDAO">
+    <select id="getById" resultMap="timePeriodResultMap" parameterType="int">
+        SELECT  t.idTimePeriod as timeperiod_id,
+                t.timeFrom as timeperiod_from,
+                t.timeTo as timeperiod_to
+        FROM TimePeriod t
+        WHERE t.idTimePeriod=#{id};
+    </select>
+    <resultMap id="timePeriodResultMap" type="com.solvd.scheduleWithGA.binary.TimePeriod" autoMapping="false">
+        <id column="timeperiod_id" property="idTimePeriod"/>
+        <result column="timeperiod_from" property="timeFrom"/>
+        <result column="timeperiod_to" property="timeTo"/>
+    </resultMap>
+</mapper>

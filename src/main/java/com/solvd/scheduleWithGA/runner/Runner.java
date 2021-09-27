@@ -1,9 +1,9 @@
 package com.solvd.scheduleWithGA.runner;
 
-import com.solvd.scheduleWithGA.dao.implementation.ClassGroupService;
-import com.solvd.scheduleWithGA.dao.implementation.ClassroomService;
-import com.solvd.scheduleWithGA.dao.implementation.LessonService;
-import com.solvd.scheduleWithGA.dao.implementation.TeacherService;
+import com.solvd.scheduleWithGA.binary.ClassGroup;
+import com.solvd.scheduleWithGA.binary.Classroom;
+import com.solvd.scheduleWithGA.dao.implementation.*;
+
 import com.solvd.scheduleWithGA.geneticAlgoService.MyIndividual;
 import com.solvd.scheduleWithGA.geneticAlgoService.MyPopulation;
 import com.solvd.scheduleWithGA.geneticAlgoService.ScheduleCreatorService;
@@ -20,11 +20,14 @@ public class Runner {
         LessonService lessonService = new LessonService();
         TeacherService teacherService = new TeacherService();
         ClassGroupService classGroupService = new ClassGroupService();
+        TimeSlotService timeSlotService = new TimeSlotService();
+
         ScheduleCreatorService scheduleCreatorService = new ScheduleCreatorService();
         scheduleCreatorService.setGroups(classGroupService.getClassGroupHashMap());
         scheduleCreatorService.setLessons(lessonService.getLessonHashMap());
         scheduleCreatorService.setTeachers(teacherService.getTeachersHashMap());
         scheduleCreatorService.setRooms(classroomService.getClassroomHashMap());
+        scheduleCreatorService.setTimeslots(timeSlotService.getTimeSlotHashMap());
 
         MyIndividual individual = new MyIndividual(scheduleCreatorService);
 

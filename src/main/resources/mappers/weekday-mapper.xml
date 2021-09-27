@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.scheduleWithGA.dao.interfaces.IWeekDayDAO">
+    <select id="getById" resultMap="weekdayResultMap" parameterType="int">
+        SELECT  w.idWeekDay as weekday_id,
+                w.dayName as weekday_name
+        FROM WeekDay w
+        WHERE w.idWeekDay=#{id};
+    </select>
+    <resultMap id="weekdayResultMap" type="com.solvd.scheduleWithGA.binary.WeekDay" autoMapping="false">
+        <id property="idWeekDay" column="weekday_id"/>
+        <result property="dayName" column="weekday_name"/>
+    </resultMap>
+</mapper>

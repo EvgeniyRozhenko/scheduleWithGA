@@ -11,6 +11,7 @@ public class ScheduleCreatorService {
     private HashMap<Integer, Teacher> teachers;
     private HashMap<Integer, Lesson> lessons;
     private HashMap<Integer, ClassGroup> groups;
+
     private HashMap<Integer, TimeSlot> timeslots;
 
     private ArrayList<Schedule> schedules;
@@ -32,6 +33,8 @@ public class ScheduleCreatorService {
         this.groups = cloneable.getGroups();
         this.timeslots = cloneable.getTimeslots();
     }
+
+    private Random random = new Random();
 
     private HashMap<Integer, ClassGroup> getGroups() {
         return this.groups;
@@ -73,8 +76,8 @@ public class ScheduleCreatorService {
         this.timeslots = timeslots;
     }
 
-    public ClassGroup[] getGroupsAsArray() {
-        return (ClassGroup[]) this.groups.values().toArray();
+    public HashMap<Integer, ClassGroup> getGroupsAsArray() {
+        return this.groups;
     }
 
     public TimeSlot getRandomTimeslot() {
@@ -83,7 +86,6 @@ public class ScheduleCreatorService {
 
     public Classroom getRandomClassroom() {
         return this.rooms.get((int)(Math.random() * timeslots.size() + 1));
-    }
 
     public Lesson getLessonById(int lessonId) {
         return this.lessons.get(lessonId);
@@ -96,6 +98,7 @@ public class ScheduleCreatorService {
         }
 
         int numberOfSchedules = 0;
+
         for (ClassGroup group : this.groups.values()) {
             numberOfSchedules += group.getLessonsIds().size();
         }
@@ -103,16 +106,5 @@ public class ScheduleCreatorService {
 
         return this.amountSchedules;
     }
-
-//    public void createSchedules(Individual individual) {
-//        Schedule[] schedules = new Schedule[this.getAmountSchedules()]; //тут не обзательно делать размерность,
-//                                                                                    // раз я заменил массив на эррейЛист
-//        int[] chromosome = individual.getChromosome();
-//
-//
-//
-//    }
-
-
 
 }

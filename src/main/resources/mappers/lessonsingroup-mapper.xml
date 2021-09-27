@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.scheduleWithGA.dao.interfaces.ILessonsInGroupDAO">
+    <select id="getById" resultMap="lessonInGroupResultMap" parameterType="int">
+        SELECT  l.idLessonInGroup as lessonInGroup_id,
+                l.lessonId as lessonInGroup_lesson,
+                l.groupId as lessonInGroup_group,
+                l.hoursPerWeek as lessonInGroup_hours
+        FROM LessonInGroup l
+        WHERE l.idLessonInGroup = #{id};
+    </select>
+    <resultMap id="lessonInGroupResultMap" type="com.solvd.scheduleWithGA.binary.LessonsInGroup" autoMapping="false">
+        <id property="idLessonInGroup" column="lessonInGroup_id"/>
+        <result column="lessonInGroup_lesson" property="lessonId"/>
+        <result column="lessonInGroup_group" property="groupId"/>
+        <result column="lessonInGroup_hours" property="hoursPerWeek"/>
+    </resultMap>
+</mapper>

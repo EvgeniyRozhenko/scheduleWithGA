@@ -4,13 +4,35 @@ import com.solvd.scheduleWithGA.binary.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class ScheduleCreatorService {
-    private final HashMap<Integer, Classroom> rooms;
-    private final HashMap<Integer, Teacher> teachers;
-    private final HashMap<Integer, Lesson> lessons;
-    private final HashMap<Integer, ClassGroup> groups;
-    private final HashMap<Integer, TimeSlot> timeslots;
+    private HashMap<Integer, Classroom> rooms;
+    private HashMap<Integer, Teacher> teachers;
+    private HashMap<Integer, Lesson> lessons;
+    private HashMap<Integer, ClassGroup> groups;
+
+    public void setRooms(HashMap<Integer, Classroom> rooms) {
+        this.rooms = rooms;
+    }
+
+    public void setTeachers(HashMap<Integer, Teacher> teachers) {
+        this.teachers = teachers;
+    }
+
+    public void setLessons(HashMap<Integer, Lesson> lessons) {
+        this.lessons = lessons;
+    }
+
+    public void setGroups(HashMap<Integer, ClassGroup> groups) {
+        this.groups = groups;
+    }
+
+    public void setTimeslots(HashMap<Integer, TimeSlot> timeslots) {
+        this.timeslots = timeslots;
+    }
+
+    private HashMap<Integer, TimeSlot> timeslots;
 
     private ArrayList<Schedule> schedules;
 
@@ -32,6 +54,8 @@ public class ScheduleCreatorService {
         this.timeslots = cloneable.getTimeslots();
     }
 
+    private Random random = new Random();
+
     private HashMap<Integer, ClassGroup> getGroups() {
         return this.groups;
     }
@@ -52,18 +76,16 @@ public class ScheduleCreatorService {
         return this.rooms;
     }
 
-    public ClassGroup[] getGroupsAsArray() {
-        return (ClassGroup[]) this.groups.values().toArray();
+    public HashMap<Integer, ClassGroup> getGroupsAsArray() {
+        return this.groups;
     }
 
     public TimeSlot getRandomTimeslot() {
-        TimeSlot[] timeslotArray = (TimeSlot[]) this.timeslots.values().toArray();
-        return timeslotArray[(int) (timeslotArray.length * Math.random())];
+        return timeslots.get((int)(Math.random()*timeslots.size()+1));
     }
 
     public Classroom getRandomClassroom() {
-        Classroom[] roomsArray = (Classroom[]) this.rooms.values().toArray();
-        return roomsArray[(int) (roomsArray.length * Math.random())];
+        return rooms.get((int)(Math.random()* rooms.size()+1));
     }
 
     public Lesson getLessonById(int lessonId) {
@@ -77,8 +99,8 @@ public class ScheduleCreatorService {
         }
 
         int numberOfSchedules = 0;
-        ArrayList<ClassGroup> groups = (ArrayList<ClassGroup>) this.groups.values();
-        for (ClassGroup group : groups) {
+        //ArrayList<ClassGroup> groups = (ArrayList<ClassGroup>) this.groups.values();
+        for (ClassGroup group : this.groups.values()) {
             numberOfSchedules += group.getLessonsIds().size();
         }
         this.amountSchedules = numberOfSchedules;

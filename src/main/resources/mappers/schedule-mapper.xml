@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "org/apache/ibatis/builder/xml/mybatis-3-mapper.dtd">
+<mapper namespace="com.solvd.scheduleWithGA.dao.interfaces.IScheduleDAO">
+    <insert id="save" parameterType="com.solvd.scheduleWithGA.binary.Schedule" keyProperty="idSchedule">
+        INSERT Schedule (timeSlotId, teacherId, lessonInGroupId, classroomId)
+        values (#{timeSlotId}, #{teacherId}, #{lessonInGroupId}, #{classroomId});
+    </insert>
+    <select id="getScheduleForDay" parameterType="int" resultType="java.util.ArrayList" resultMap="scheduleResultMap">
+        SELECT  s.idSchedule as schedule_id,
+                s.timeSlotId as schedule_timeSlotId,
+                s.teacherId as schedule_teacherId,
+                s.lessonInGroupId as schedule_lessonInGroupId,
+                s.classroomId as schedule_classroomId
+        FROM Schedule s
+        LEFT JOIN TimeSlot t on s.timeSlotId = t.idTimeSlot
+        WHERE weekDayId = #{dayId};
+    </select>
+    <resultMap id="scheduleResultMap" type="com.solvd.scheduleWithGA.binary.Schedule">
+        <id column="schedule_id" property="idSchedule"/>
+        <result column="schedule_timeSlotId" property="timeSlotId"/>
+        <result column="schedule_teacherId" property="teacherId"/>
+        <result column="schedule_lessonInGroupId" property="lessonInGroupId"/>
+        <result column="schedule_classroomId" property="classroomId"/>
+    </resultMap>
+</mapper>

@@ -7,7 +7,7 @@
                 t.fullName as teacher_fullName,
                 t.specialityId as teacher_specialityId
         FROM Teacher t
-        WHERE t.idTeacher = #{id}
+        WHERE t.idTeacher = #{id};
     </select>
     <resultMap id="teacherResultMap" type="com.solvd.scheduleWithGA.binary.Teacher" autoMapping ="false">
         <id column="teacher_id" property="idTeacher"/>

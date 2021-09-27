@@ -21,5 +21,9 @@
         <mapper resource="mappers/timeslot-mapper.xml"/>
         <mapper resource="mappers/lesson-mapper.xml"/>
         <mapper resource="mappers/classgroup-mapper.xml"/>
+        <mapper resource="mappers/schedule-mapper.xml"/>
+        <mapper resource="mappers/lessonsingroup-mapper.xml"/>
+        <mapper resource="mappers/timeperiod-mapper.xml"/>
+        <mapper resource="mappers/weekday-mapper.xml"/>
     </mappers>
 </configuration>

@@ -11,6 +11,30 @@ public class ScheduleCreatorService {
     private HashMap<Integer, Teacher> teachers;
     private HashMap<Integer, Lesson> lessons;
     private HashMap<Integer, ClassGroup> groups;
+<<<<<<< HEAD
+=======
+
+    public void setRooms(HashMap<Integer, Classroom> rooms) {
+        this.rooms = rooms;
+    }
+
+    public void setTeachers(HashMap<Integer, Teacher> teachers) {
+        this.teachers = teachers;
+    }
+
+    public void setLessons(HashMap<Integer, Lesson> lessons) {
+        this.lessons = lessons;
+    }
+
+    public void setGroups(HashMap<Integer, ClassGroup> groups) {
+        this.groups = groups;
+    }
+
+    public void setTimeslots(HashMap<Integer, TimeSlot> timeslots) {
+        this.timeslots = timeslots;
+    }
+
+>>>>>>> 1539b3c4dafdf34b5a4f7dff5255fe44bac96193
     private HashMap<Integer, TimeSlot> timeslots;
 
     private ArrayList<Schedule> schedules;
@@ -33,6 +57,8 @@ public class ScheduleCreatorService {
         this.timeslots = cloneable.getTimeslots();
     }
 
+    private Random random = new Random();
+
     private HashMap<Integer, ClassGroup> getGroups() {
         return this.groups;
     }
@@ -53,6 +79,7 @@ public class ScheduleCreatorService {
         return this.rooms;
     }
 
+<<<<<<< HEAD
     public void setRooms(HashMap<Integer, Classroom> rooms) {
         this.rooms = rooms;
     }
@@ -83,6 +110,18 @@ public class ScheduleCreatorService {
 
     public Classroom getRandomClassroom() {
         return this.rooms.get((int)(Math.random() * timeslots.size() + 1));
+=======
+    public HashMap<Integer, ClassGroup> getGroupsAsArray() {
+        return this.groups;
+    }
+
+    public TimeSlot getRandomTimeslot() {
+        return timeslots.get((int)(Math.random()*timeslots.size()+1));
+    }
+
+    public Classroom getRandomClassroom() {
+        return rooms.get((int)(Math.random()* rooms.size()+1));
+>>>>>>> 1539b3c4dafdf34b5a4f7dff5255fe44bac96193
     }
 
     public Lesson getLessonById(int lessonId) {
@@ -96,6 +135,10 @@ public class ScheduleCreatorService {
         }
 
         int numberOfSchedules = 0;
+<<<<<<< HEAD
+=======
+        //ArrayList<ClassGroup> groups = (ArrayList<ClassGroup>) this.groups.values();
+>>>>>>> 1539b3c4dafdf34b5a4f7dff5255fe44bac96193
         for (ClassGroup group : this.groups.values()) {
             numberOfSchedules += group.getLessonsIds().size();
         }

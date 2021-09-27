@@ -1,7 +1,9 @@
 package com.solvd.scheduleWithGA.geneticAlgoService;
 
 import com.solvd.scheduleWithGA.binary.ClassGroup;
+import com.solvd.scheduleWithGA.binary.Classroom;
 import com.solvd.scheduleWithGA.binary.Lesson;
+import com.solvd.scheduleWithGA.binary.TimeSlot;
 
 import java.util.Arrays;
 
@@ -25,16 +27,18 @@ public class MyIndividual {
         int[] newChromosome = new int[chromosomeLength];
         int chromosomeIndex = 0;
         //проходим по Группам
-        for (ClassGroup group : timetable.getGroupsAsArray()) {
+        for (ClassGroup group : timetable.getGroupsAsArray().values()) {
             //проходим по элементам [] Уроков в каждой Группе
             for (int lessonId : group.getLessonsIds()) {
                 //добавляем случайный id timeslot в текущий индекс хромосомы
-                int timeSlotId = timetable.getRandomTimeslot().getIdTimeSlot();
+                TimeSlot timeSlot = timetable.getRandomTimeslot();
+                int timeSlotId = timeSlot.getIdTimeSlot();
                 newChromosome[chromosomeIndex] = timeSlotId;
                 ++chromosomeIndex;
 
                 //добавляем случайный id classroom в следующий индекс хромосомы
-                int classroomId = timetable.getRandomClassroom().getIdRoom();
+                Classroom classroom = timetable.getRandomClassroom();
+                int classroomId = classroom.getIdRoom();
                 newChromosome[chromosomeIndex] = classroomId;
                 ++chromosomeIndex;
 

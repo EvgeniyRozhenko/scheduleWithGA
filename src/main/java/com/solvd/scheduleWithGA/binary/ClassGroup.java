@@ -41,6 +41,10 @@ public class ClassGroup {
         this.groupSize = groupSize;
     }
 
+    public int getRandomLessonId() {
+        return lessonsIds.get((int) (lessonsIds.size() * Math.random()));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

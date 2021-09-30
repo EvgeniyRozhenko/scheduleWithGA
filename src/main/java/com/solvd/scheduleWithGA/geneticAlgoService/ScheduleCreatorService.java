@@ -2,9 +2,7 @@ package com.solvd.scheduleWithGA.geneticAlgoService;
 
 import com.solvd.scheduleWithGA.binary.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.*;
 
 public class ScheduleCreatorService {
     private HashMap<Integer, Classroom> rooms;
@@ -33,21 +31,19 @@ public class ScheduleCreatorService {
         this.timeslots = cloneable.getTimeslots();
     }
 
-    private Random random = new Random();
-
-    private HashMap<Integer, ClassGroup> getGroups() {
+    public HashMap<Integer, ClassGroup> getGroups() {
         return this.groups;
     }
 
-    private HashMap<Integer, TimeSlot> getTimeslots() {
+    public HashMap<Integer, TimeSlot> getTimeslots() {
         return this.timeslots;
     }
 
-    private HashMap<Integer, Lesson> getLessons() {
+    public HashMap<Integer, Lesson> getLessons() {
         return this.lessons;
     }
 
-    private HashMap<Integer, Teacher> getTeachers() {
+    public HashMap<Integer, Teacher> getTeachers() {
         return this.teachers;
     }
 
@@ -75,8 +71,12 @@ public class ScheduleCreatorService {
         this.timeslots = timeslots;
     }
 
-    public HashMap<Integer, ClassGroup> getGroupsAsArray() {
-        return this.groups;
+    public ArrayList<Schedule> getSchedules() {
+        return schedules;
+    }
+
+    public ArrayList<ClassGroup> getGroupsAsArray() {
+        return new ArrayList<>(this.groups.values());
     }
 
     public TimeSlot getRandomTimeslot() {
@@ -91,19 +91,93 @@ public class ScheduleCreatorService {
         return this.lessons.get(lessonId);
     }
 
+    //считает количество всех расписаний в каждой группе
     public int getAmountSchedules() {
-        if (this.amountSchedules > 0) {
-            return this.amountSchedules;
-        }
 
         int numberOfSchedules = 0;
 
         for (ClassGroup group : this.groups.values()) {
             numberOfSchedules += group.getLessonsIds().size();
         }
-        this.amountSchedules = numberOfSchedules;
 
-        return this.amountSchedules;
+        return this.amountSchedules = numberOfSchedules;
     }
 
+    public void createSchedules(Individual individual) {
+        ArrayList<Schedule> schedules = new ArrayList<>(this.getAmountSchedules());
+        ArrayList<Integer> chromosome = individual.getChromosome();
+        int chromosomeIndex = 0;
+        int scheduleIndex = 0;
+
+        for (ClassGroup group : this.getGroupsAsArray()) {
+            for (int lessonId : group.getLessonsIds()) {
+
+                schedules.add(scheduleIndex, new Schedule(scheduleIndex, group.getIdClassGroup(), lessonId));
+                schedules.get(scheduleIndex).setTimeSlotId(chromosome.get(chromosomeIndex));
+                ++chromosomeIndex;
+
+                schedules.get(scheduleIndex).setClassroomId(chromosome.get(chromosomeIndex));
+                ++chromosomeIndex;
+
+                schedules.get(scheduleIndex).setTeacherId(chromosome.get(chromosomeIndex));
+                ++chromosomeIndex;
+                ++scheduleIndex;
+            }
+        }
+        this.schedules = schedules;
+    }
+
+    public int calculateCollisions() {
+        int collisions = 0;
+
+        for (Schedule scheduleFirst : this.schedules) {
+            Classroom room = this.rooms.get(scheduleFirst.getClassroomId());
+            int classroomCapacity = room.getCapacity();
+            ClassGroup group = this.groups.get(scheduleFirst.getGroupId());
+            int groupSize = group.getGroupSize();
+
+            if (classroomCapacity < groupSize) {
+                ++collisions;
+            }
+            for (Schedule scheduleSecond : this.schedules) {
+                if (scheduleFirst.getIdSchedule() != scheduleSecond.getIdSchedule()
+                        && scheduleFirst.getTimeSlotId() == scheduleSecond.getTimeSlotId()
+                        && scheduleFirst.getTeacherId() == scheduleSecond.getTeacherId()
+                        && scheduleFirst.getGroupId() == scheduleSecond.getGroupId()
+                        && scheduleFirst.getLessonId() == scheduleSecond.getLessonId()
+                        && scheduleFirst.getClassroomId() == scheduleSecond.getClassroomId()) {
+                    ++collisions;
+                }
+                if ((scheduleFirst.getIdSchedule() != scheduleSecond.getIdSchedule()
+                    && scheduleFirst.getClassroomId() == scheduleSecond.getClassroomId()
+                    && scheduleFirst.getTimeSlotId() == scheduleSecond.getTimeSlotId())) {
+                    ++collisions;
+                }
+                if (scheduleFirst.getIdSchedule() != scheduleSecond.getIdSchedule()
+                        && scheduleFirst.getTeacherId() == scheduleSecond.getTeacherId()
+                        && scheduleFirst.getTimeSlotId() == scheduleSecond.getTimeSlotId()) {
+                    ++collisions;
+                }
+                if (scheduleFirst.getIdSchedule() != scheduleSecond.getIdSchedule()
+                        && scheduleFirst.getGroupId() == scheduleSecond.getGroupId()
+                        && scheduleFirst.getTimeSlotId() == scheduleSecond.getTimeSlotId()) {
+                    ++collisions;
+                }
+            }
+        }
+        return collisions;
+    }
+
+    @Override
+    public String toString() {
+        return "ScheduleCreatorService{" +
+                "rooms=" + rooms +
+                ", teachers=" + teachers +
+                ", lessons=" + lessons +
+                ", groups=" + groups +
+                ", timeslots=" + timeslots +
+                ", schedules=" + schedules +
+                ", amountSchedules=" + amountSchedules +
+                '}';
+    }
 }

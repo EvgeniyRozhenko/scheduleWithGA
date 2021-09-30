@@ -1,8 +1,6 @@
 package com.solvd.scheduleWithGA.dao.implementation;
 
-import com.solvd.scheduleWithGA.binary.LessonsInGroup;
 import com.solvd.scheduleWithGA.binary.TimePeriod;
-import com.solvd.scheduleWithGA.dao.interfaces.ILessonsInGroupDAO;
 import com.solvd.scheduleWithGA.dao.interfaces.ITimePeriodDAO;
 import com.solvd.scheduleWithGA.utils.MyBatisFactory;
 import org.apache.ibatis.session.SqlSession;

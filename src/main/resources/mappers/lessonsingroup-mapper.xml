@@ -10,7 +10,7 @@
         FROM LessonInGroup l
         WHERE l.idLessonInGroup = #{id};
     </select>
-    <resultMap id="lessonInGroupResultMap" type="com.solvd.scheduleWithGA.binary.LessonsInGroup" autoMapping="false">
+    <resultMap id="lessonInGroupResultMap" type="com.solvd.scheduleWithGA.binary.LessonInGroup" autoMapping="false">
         <id property="idLessonInGroup" column="lessonInGroup_id"/>
         <result column="lessonInGroup_lesson" property="lessonId"/>
         <result column="lessonInGroup_group" property="groupId"/>

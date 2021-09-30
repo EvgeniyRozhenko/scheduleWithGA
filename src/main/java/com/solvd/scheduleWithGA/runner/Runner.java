@@ -2,8 +2,8 @@ package com.solvd.scheduleWithGA.runner;
 
 import com.solvd.scheduleWithGA.dao.implementation.*;
 
-import com.solvd.scheduleWithGA.geneticAlgoService.MyIndividual;
-import com.solvd.scheduleWithGA.geneticAlgoService.MyPopulation;
+import com.solvd.scheduleWithGA.geneticAlgoService.Individual;
+import com.solvd.scheduleWithGA.geneticAlgoService.Population;
 import com.solvd.scheduleWithGA.geneticAlgoService.ScheduleCreatorService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,12 +25,21 @@ public class Runner {
         scheduleCreatorService.setRooms(classroomService.getClassroomHashMap());
         scheduleCreatorService.setTimeslots(timeSlotService.getTimeSlotHashMap());
 
-        MyIndividual individual = new MyIndividual(scheduleCreatorService);
-
-        MyPopulation population = new MyPopulation(5, scheduleCreatorService);
-
+        Individual individual = new Individual(scheduleCreatorService);
         LOGGER.info(individual);
-        population.countAndSetPopulationFitness();
-        LOGGER.info("Population Fitness:"+population.getPopulationFitness());
+        LOGGER.info("Chromosome size -> " + individual.getChromosome().size());
+
+        scheduleCreatorService.createSchedules(individual);
+        LOGGER.info(scheduleCreatorService.getSchedules());
+
+        int sumOfCollisions = scheduleCreatorService.calculateCollisions();
+        LOGGER.info("Sum of collisions -> " + sumOfCollisions);
+        individual.setFitness(sumOfCollisions);
+        LOGGER.info("Fitness -> " + individual.getFitness());
+
+        Population population = new Population(20, scheduleCreatorService);
+        population.countAndSetPopulationFitness(scheduleCreatorService);
+        LOGGER.info(population);
+        LOGGER.info("Average population fitness -> " + population.getAveragePopulationFitness());
     }
 }

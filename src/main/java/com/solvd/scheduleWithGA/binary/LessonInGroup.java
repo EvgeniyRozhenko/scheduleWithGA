@@ -2,11 +2,17 @@ package com.solvd.scheduleWithGA.binary;
 
 import java.util.Objects;
 
-public class LessonsInGroup {
+public class LessonInGroup {
     private int idLessonInGroup;
     private int lessonId;
     private int groupId;
     private int hoursPerWeek;
+
+    public LessonInGroup(int idLessonInGroup, int lessonId, int groupId) {
+        this.idLessonInGroup = idLessonInGroup;
+        this.lessonId = lessonId;
+        this.groupId = groupId;
+    }
 
     public int getIdLessonInGroup() {
         return idLessonInGroup;
@@ -43,8 +49,8 @@ public class LessonsInGroup {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof LessonsInGroup)) return false;
-        LessonsInGroup that = (LessonsInGroup) o;
+        if (!(o instanceof LessonInGroup)) return false;
+        LessonInGroup that = (LessonInGroup) o;
         return idLessonInGroup == that.idLessonInGroup && lessonId == that.lessonId && groupId == that.groupId && hoursPerWeek == that.hoursPerWeek;
     }
 

@@ -4,50 +4,46 @@ import com.solvd.scheduleWithGA.binary.ClassGroup;
 import com.solvd.scheduleWithGA.binary.Classroom;
 import com.solvd.scheduleWithGA.binary.Lesson;
 import com.solvd.scheduleWithGA.binary.TimeSlot;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 
-public class MyIndividual {
-    private int[] chromosome;
-    private double fitness = -1;
+public class Individual {
+    private ArrayList<Integer> chromosome;
+    private int fitness = 0;
+
+    private static final Logger LOGGER = LogManager.getLogger(Individual.class);
 
     /**
      Инициализирует случайный индивид на основе расписания, как фиксированной информации.
      Учитывая фикс инфу создаём хромосому, которая случайным образом назначает TimeSlots,
      Classrooms и Teachers для каждой ClassGroup и Lesson.
      */
-    public MyIndividual(ScheduleCreatorService timetable) {
+    public Individual(ScheduleCreatorService timetable) {
         //сохраняем количество расписаний из [] айдишек Уроков в Группах
         int amountSchedules = timetable.getAmountSchedules();
-
-        // 1 ген для classroom, 1 для timeslot, 1 для teacher
-        int chromosomeLength = amountSchedules * 3;
         // создаём случайного индивида
-        int[] newChromosome = new int[chromosomeLength];
-        int chromosomeIndex = 0;
+        ArrayList<Integer> newChromosome = new ArrayList<>();
         //проходим по Группам
-        for (ClassGroup group : timetable.getGroupsAsArray().values()) {
+        for (ClassGroup group : timetable.getGroupsAsArray()) {
             //проходим по элементам [] Уроков в каждой Группе
             for (int lessonId : group.getLessonsIds()) {
                 //добавляем случайный id timeslot в текущий индекс хромосомы
                 TimeSlot timeSlot = timetable.getRandomTimeslot();
                 int timeSlotId = timeSlot.getIdTimeSlot();
-                newChromosome[chromosomeIndex] = timeSlotId;
-                ++chromosomeIndex;
+                newChromosome.add(timeSlotId);
 
                 //добавляем случайный id classroom в следующий индекс хромосомы
                 Classroom classroom = timetable.getRandomClassroom();
                 int classroomId = classroom.getIdRoom();
-                newChromosome[chromosomeIndex] = classroomId;
-                ++chromosomeIndex;
+                newChromosome.add(classroomId);
 
                 //добаляем случайный id teacher из [] поля lesson-а в след индекс хромосомы
                 Lesson lesson = timetable.getLessonById(lessonId);
-                newChromosome[chromosomeIndex] = lesson.getRandomTeacherId();
-                ++chromosomeIndex;
+                newChromosome.add(lesson.getRandomTeacherId());
             }
         }
-        //сохраняем новосозданный хромосом в поле
         this.chromosome = newChromosome;
     }
 
@@ -57,22 +53,18 @@ public class MyIndividual {
      * только для конструктора Population? как заполнение [] популяции индивидами
      * или для метода crossoverPopulation(), алгоритм которого переписывает всю эту хромосому.
      */
-    public MyIndividual(int chromosomeLength) {
-        int[] newChromosome;
-        newChromosome = new int[chromosomeLength];
+    public Individual(int chromosomeLength) {
+        ArrayList<Integer> newChromosome = new ArrayList<>(chromosomeLength);
+
         for (int i = 0; i < chromosomeLength; i++) {
-            newChromosome[i] = i;
+            newChromosome.set(i, i);
         }
         this.chromosome = newChromosome;
     }
 
 
-    public int[] getChromosome() {
+    public ArrayList<Integer> getChromosome() {
         return this.chromosome;
-    }
-
-    public void setGene(int index, int gene) { //???
-        this.chromosome[index] = gene;
     }
 
     public boolean containsGene(int gene) {
@@ -88,13 +80,43 @@ public class MyIndividual {
         return this.fitness;
     }
 
-    public void setFitness(double fitness) {
-        this.fitness = fitness;
+    public void setFitness(int collisions) {
+        this.fitness = 100 - collisions;
     }
 
     public String toString() {
-        return "MyIndividual {" +
-                "chromosome " + Arrays.toString(chromosome) +
-                '}';
+        return "Individual {" +
+                "\n chromosome -> " + chromosome +
+                "\n fitness -> " + fitness +
+                "}|";
     }
+
+//    public Individual(ScheduleCreatorService timetable) {
+//        int chromosomeSize = timetable.getTimeslots().size();
+//        LOGGER.debug("ChromosomeSize -> " + chromosomeSize);
+//        HashMap<Integer, HashMap<Integer, BunchHelper>> newChromosome = new HashMap<>(chromosomeSize);
+//        HashMap<Integer, BunchHelper> groupPossibleLecture = new HashMap<>();
+//        LOGGER.debug("New chromosome size is -> " + newChromosome.size());
+//
+//        for (TimeSlot timeSlot : timetable.getTimeslots().values()) {
+//            int timeSlotId = timeSlot.getIdTimeSlot();
+//
+//            for (ClassGroup group : timetable.getGroupsAsArray()) {
+//                int groupId = group.getIdClassGroup();
+//                int randomLessonId = group.getRandomLessonId();
+//
+//                Lesson currentLesson = timetable.getLessonById(randomLessonId);
+//                int randomTeacherId = currentLesson.getRandomTeacherId();
+//
+//                Classroom classroom = timetable.getRandomClassroom();
+//                int randomClassroomId = classroom.getIdRoom();
+//
+//                BunchHelper bunch = new BunchHelper(randomLessonId, randomTeacherId, randomClassroomId);
+//
+//                groupPossibleLecture.put(groupId, bunch);
+//            }
+//            newChromosome.put(timeSlotId, groupPossibleLecture);
+//        }
+//        this.chromosome = newChromosome;
+//    }
 }

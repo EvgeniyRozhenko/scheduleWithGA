@@ -23,13 +23,6 @@ public class ScheduleCreatorService {
         this.timeslots = new HashMap<>();
     }
 
-    public ScheduleCreatorService(ScheduleCreatorService cloneable) {
-        this.rooms = cloneable.getRooms();
-        this.teachers = cloneable.getTeachers();
-        this.lessons = cloneable.getLessons();
-        this.groups = cloneable.getGroups();
-        this.timeslots = cloneable.getTimeslots();
-    }
 
     public HashMap<Integer, ClassGroup> getGroups() {
         return this.groups;
@@ -91,7 +84,7 @@ public class ScheduleCreatorService {
         return this.lessons.get(lessonId);
     }
 
-    //считает количество всех расписаний в каждой группе
+
     public int getAmountSchedules() {
 
         int numberOfSchedules = 0;

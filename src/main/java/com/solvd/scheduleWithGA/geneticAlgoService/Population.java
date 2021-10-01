@@ -1,41 +1,37 @@
 package com.solvd.scheduleWithGA.geneticAlgoService;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Population {
-    private ArrayList<Individual> population;
+    private ArrayList<Individual> individuals;
     private int averagePopulationFitness = 0;
 
-    public Population(int populationSize) {
-        this.population = new ArrayList<>(populationSize);
-    }
-
     public Population(int populationSize, ScheduleCreatorService timetable) {
-        this.population = new ArrayList<>(populationSize);
+        this.individuals = new ArrayList<>(populationSize);
 
         for (int individualCount = 0; individualCount < populationSize; individualCount++) {
-            // происходит заполнение массива Популяции индивидами со случайными хромосомами
+
             Individual individual = new Individual(timetable);
-            this.population.add(individual);
+            this.individuals.add(individual);
         }
     }
 
-    public Population(int populationSize, int chromosomeLength) {
-        this.population = new ArrayList<>(populationSize);
-
-        for (int individualCount = 0; individualCount < populationSize; individualCount++) {
-            // происходит заполнение популяции индивидами с хромосомами-пустышками
-            Individual individual = new Individual(chromosomeLength);
-            this.population.set(individualCount, individual);
-        }
+    public Population(ArrayList<Individual> individuals, ScheduleCreatorService timetable) {
+        this.individuals = individuals;
+        countAndSetPopulationFitness(timetable);
     }
 
-    public ArrayList<Individual> getPopulation() {
-        return this.population;
+    public ArrayList<Individual> getIndividuals() {
+        return this.individuals;
+    }
+
+    public double getAveragePopulationFitness() {
+        return this.averagePopulationFitness;
     }
 
     //TODO сделать сортировку по популяции и выдать самого сильного (возможно двух для создания отпрыска)
-//    public Individual getFittestIndividual(int expectedFitness) {
+//    public Individual sortByFitness(int expectedFitness) {
 //        // прохождение по популяции и сортировка по соответсвию
 //        Arrays.sort(this.population, (o1, o2) -> {
 //            if (o1.getFitness() > o2.getFitness()) {
@@ -50,11 +46,12 @@ public class Population {
 //    }
 
     public void countAndSetPopulationFitness(ScheduleCreatorService table) {
-        // установка общ пригодности популяции
         int totalSumCollisions = 0;
         int sumOfCollisions;
-        ArrayList<Individual> population = this.population;
+        ArrayList<Individual> population = this.individuals;
+
         for (int i = 0; i < population.size(); i++) {
+
             Individual individual = population.get(i);
             table.createSchedules(individual);
             sumOfCollisions = table.calculateCollisions();
@@ -64,21 +61,42 @@ public class Population {
         this.averagePopulationFitness = (population.size() * 100 - totalSumCollisions) / population.size();
     }
 
-    public double getAveragePopulationFitness() {
-        return this.averagePopulationFitness;
+    public Population selectionFittest(ScheduleCreatorService timetable) {
+        ArrayList<Individual> selectedIndividuals = new ArrayList<>();
+
+        for (Individual individual : this.individuals) {
+            if (individual.getFitness() == 100) {
+                selectedIndividuals.add(individual);
+            }
+        }
+
+        return new Population(selectedIndividuals, timetable);
     }
 
     public Individual getIndividual(int index) {
-        return population.get(index);
+        return individuals.get(index);
     }
 
     public void setIndividualByIndex(int index, Individual individual) {
-        this.population.set(index, individual);
+        this.individuals.set(index, individual);
     }
 
     @Override
     public String toString() {
         return "MyPopulation {\n" +
-                population.toString().replace("|", "\n") + '}';
+                individuals.toString().replace("|", "\n") + '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Population)) return false;
+        Population that = (Population) o;
+        return averagePopulationFitness == that.averagePopulationFitness && individuals.equals(that.individuals);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(individuals, averagePopulationFitness);
     }
 }

@@ -8,6 +8,8 @@ import com.solvd.scheduleWithGA.geneticAlgoService.ScheduleCreatorService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+
 public class Runner {
     private static final Logger LOGGER = LogManager.getLogger(Runner.class);
     public static void main(String[] args) {
@@ -41,5 +43,9 @@ public class Runner {
         population.countAndSetPopulationFitness(scheduleCreatorService);
         LOGGER.info(population);
         LOGGER.info("Average population fitness -> " + population.getAveragePopulationFitness());
+
+        Population newPopulation = population.selectionFittest(scheduleCreatorService);
+        LOGGER.info(newPopulation);
+        LOGGER.info("New average population fitness -> " + newPopulation.getAveragePopulationFitness());
     }
 }

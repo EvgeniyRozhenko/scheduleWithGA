@@ -4,3 +4,4 @@
 target/
 resources/ScheduleScheme.mwb.bak
 resources/app.properties
+com/solvd/scheduleWithGA/GeneticAlgo

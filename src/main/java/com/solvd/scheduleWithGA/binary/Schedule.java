@@ -6,12 +6,14 @@ public class Schedule {
     private int idSchedule;
     private int timeSlotId;
     private int teacherId;
-    private int lessonInGroupId;
+    private int groupId;
+    private int lessonId;
     private int classroomId;
 
-    public Schedule(int idSchedule, int lessonInGroupId) {
+    public Schedule(int idSchedule, int groupId, int lessonId) {
         this.idSchedule = idSchedule;
-        this.lessonInGroupId = lessonInGroupId;
+        this.groupId = groupId;
+        this.lessonId = lessonId;
     }
 
     public int getIdSchedule() {
@@ -38,12 +40,20 @@ public class Schedule {
         this.teacherId = teacherId;
     }
 
-    public int getLessonInGroupId() {
-        return lessonInGroupId;
+    public int getGroupId() {
+        return groupId;
     }
 
-    public void setLessonInGroupId(int lessonInGroupId) {
-        this.lessonInGroupId = lessonInGroupId;
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
+    }
+
+    public int getLessonId() {
+        return lessonId;
+    }
+
+    public void setLessonId(int lessonId) {
+        this.lessonId = lessonId;
     }
 
     public int getClassroomId() {
@@ -59,12 +69,14 @@ public class Schedule {
         if (this == o) return true;
         if (!(o instanceof Schedule)) return false;
         Schedule schedule = (Schedule) o;
-        return idSchedule == schedule.idSchedule && timeSlotId == schedule.timeSlotId && teacherId == schedule.teacherId && lessonInGroupId == schedule.lessonInGroupId && classroomId == schedule.classroomId;
+        return idSchedule == schedule.idSchedule && timeSlotId == schedule.timeSlotId
+                && teacherId == schedule.teacherId && groupId == schedule.groupId
+                && lessonId == schedule.lessonId && classroomId == schedule.classroomId;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idSchedule, timeSlotId, teacherId, lessonInGroupId, classroomId);
+        return Objects.hash(idSchedule, timeSlotId, teacherId, groupId, lessonId, classroomId);
     }
 
     @Override
@@ -73,7 +85,8 @@ public class Schedule {
                 "idSchedule=" + idSchedule +
                 ", timeSlotId=" + timeSlotId +
                 ", teacherId=" + teacherId +
-                ", lessonInGroupId=" + lessonInGroupId +
+                ", groupId=" + groupId +
+                ", lessonId=" + lessonId +
                 ", classroomId=" + classroomId +
                 '}';
     }
